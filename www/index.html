@@ -2,6 +2,9 @@
 
 <head>
 <title>CsvJdbc Home</title>
+<meta name="description" content="CsvJdbc is a simple open-source,read-only JDBC driver that uses Comma Separated Value (CSV) files as database tables. It is ideal for writing data importing programs.">
+<meta name="keywords" content="CSV, JDBC, Java, Driver, open source, Comma Separated Value">
+
 </head>
 
 <body bgcolor="#FFFFFF">
@@ -67,14 +70,48 @@ public class DemoDriver
   }
 }
 </font></pre>
-        <p></p></font></td>    
+        <p></p></font></td>
     </tr>
 </tr>
+  <tr><td><font face="arial">&nbsp;</font></td>
+	        <td valign="top"><font face="arial"><b>Advanced Options</b></font><hr
+	        size="1" noshade>
+	        <p><font size="2" face="Arial">The driver also supports a number of parameters that change the default behaviour of the driver.</p>
+	        <p><font size="2" face="Arial">These properties are:</p>
+	        <p><font size="2" face="Arial">
+	         <dl>
+	          <dt><b>separator</b></dt>
+	          <dd>Used to specify a different column separator (Default is ',').</dd>
+
+	          <dt><b>suppressHeaders</b></dt>
+	          <dd>Used to specify if the first line contains column header information (Default is <code>false</code>; column headers are on first line).</dd>
+
+	          <dt><b>fileExtension</b></dt>
+	          <dd>Used to specify a different file extension (Default is ".csv")</dd>
+	         </dl>
+	        </p>
+
+         <p><font size="2" face="Arial">This following example code shows
+         how these properties are used. </font></p>
+         <pre><font size="2">  ...
+
+  Properties props = new java.util.Properties();
+
+  props.put("separator","|");              // separator is a bar
+  props.put("suppressHeaders","true");     // first line contains data
+  props.put("fileExtension",".txt");       // file extension is .txt
+
+  Connection conn = Drivermanager.getConnection(&quot;jdbc:relique:csv:&quot; + args[0],props)
+
+  ...</font>
+         </pre>
+	        <p></p></td>
+    </tr>
 <tr><td><font face="arial">&nbsp;</font></td>
 <td valign="top"><font face="arial"><b>Download</b></font><hr noshade size="1">
         <font size="2" face="Arial">The latest version of the software can be found
 at <a href="http://www.sourceforge.net/projects/csvjdbc">http://www.sourceforge.net/projects/csvjdbc</a>.
-<p></p></font></td>    
+<p></p></font></td>
     </tr>
 </table>
 
