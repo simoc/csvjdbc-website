@@ -1,18 +1,85 @@
 <html>
- <head>
-  <title>CsvJdbc Home</title>
- </head>
 
- <body bgcolor="#FFFFFF">
-  <h2><font face="Arial" color="#FFFFFF"><span style="background-color: #000000">Welcome to the CsvJdbc project home page</span></font></h2>
-  <p><font face="Arial" size="2">This area is under construction (whilst I wrap my head around using <a href="http://www.sourceforge.net">SourceForge</a>).</font></p>
-  <p>&nbsp;</p>
-  <p>&nbsp;</p>
-  <p>&nbsp;</p>
-  <a href="http://sourceforge.net/projects/csvjdbc/"><img src="http://sourceforge.net/sflogo.php?group_id=17973" width="88" height="31" border="0" alt="SourceForge Logo"></a>
-  <p>&nbsp;</p>
-  <p>&nbsp;</p>
-  <p>&nbsp;</p>
-  <font size="-1"><i>Last modified: $Id$</i></font>
- </body>
+<head>
+<title>CsvJdbc Home</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<table border="0" cellpadding="2" cellspacing="1">
+    <tr>
+        <td><font face="Arial"><img src="CsvJdbcLogo.jpg"></font></td>
+        <td><font face="Arial"><h1>CsvJdbc - a JDBC driver for CSV files</font></td>
+    </tr>
+    <tr>
+        <td align="center" valign="bottom"><font face="arial">Hosted by </font><br><a href="http://sourceforge.net/projects/csvjdbc/"><font
+        face="Arial"><img
+        src="http://sourceforge.net/sflogo.php?group_id=17973"
+        alt="SourceForge Logo" border="0" width="88" height="31"></font></a><font
+        face="Arial"> </font></td>
+        <td valign="top"><font face="arial"><b>About</b></font><hr noshade size="1">
+        <font size="2" face="Arial">CsvJdbc is a simple read-only JDBC driver that uses
+        Comma Separated Value (CSV) files as database tables. It is ideal for writing data
+        importing programs.
+        <p></p></font></td>
+</tr>
+<tr><td><font face="arial">&nbsp;</font></td>
+<td valign="top"><font face="arial"><b>How is it used</b></font><hr noshade size="1">
+        <font size="2" face="Arial">The CsvJDBC driver is used just like any other JDBC driver. The example code shows how the driver is used.
+
+<pre>
+import java.sql.*;
+
+public class DemoDriver
+{
+  public static void main(String[] args)
+  {
+    try
+    {
+      // load the driver into memory
+      Class.forName("org.relique.jdbc.csv.CsvDriver");
+
+      // create a connection. The first command line parameter is assumed to
+      //  be the directory in which the .csv files are held
+      Connection conn = DriverManager.getConnection("jdbc:relique:csv:" + args[0] );
+
+      // create a Statement object to execute the query with
+      Statement stmt = conn.createStatement();
+
+      // Select the ID and NAME columns from sample.csv
+      ResultSet results = stmt.executeQuery("SELECT ID,NAME FROM sample");
+
+      // dump out the results
+      while (results.next())
+      {
+        System.out.println("ID= " + results.getString("ID") + "   NAME= " + results.getString("NAME"));
+      }
+
+      // clean up
+      results.close();
+      stmt.close();
+      conn.close();
+    }
+    catch(Exception e)
+    {
+      System.out.println("Oops-> " + e);
+    }
+  }
+}
+</pre>
+        <p></p></font></td>    
+    </tr>
+</tr>
+<tr><td><font face="arial">&nbsp;</font></td>
+<td valign="top"><font face="arial"><b>Download</b></font><hr noshade size="1">
+        <font size="2" face="Arial">The latest version of the software can be found
+at <a href="http://www.sourceforge.net/projects/csvjdbc">http://www.sourceforge.net/projects/csvjdbc</a>.
+<p></p></font></td>    
+    </tr>
+</table>
+
+<p><font size="1" face="Arial"><i>Last modified: $Id: index.html,v
+1.1 2001/01/22 10:17:30 jackerm Exp $</i></font><font
+face="Arial"> </font></p>
+</body>
 </html>
