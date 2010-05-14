@@ -2,6 +2,8 @@
 
 <head>
 <title>CsvJdbc Home</title>
+<link href="additions.css" rel="stylesheet" type="text/css" />
+
 <meta name="description" content="CsvJdbc is a simple open-source,read-only JDBC driver that uses Comma Separated Value (CSV) files as database tables. It is ideal for writing data importing programs.">
 <meta name="keywords" content="CSV, JDBC, Java, Driver, open source, Comma Separated Value">
 
@@ -10,27 +12,47 @@
 <body bgcolor="#FFFFFF">
 
 <table border="0" cellpadding="2" cellspacing="1">
-    <tr>
-        <td><font face="Arial"><img src="CsvJdbcLogo.jpg" width="182" height="108" alt="The CsvJdbc Logo"></font></td>
-        <td><font face="Arial"><h1>CsvJdbc - a JDBC driver for CSV files</font></td>
-    </tr>
-    <tr>
-        <td align="center" valign="bottom"><font face="arial">Hosted by </font><br><a href="http://sourceforge.net/projects/csvjdbc/"><font
-        face="Arial"><img
-        src="http://sourceforge.net/sflogo.php?group_id=17973"
-        alt="SourceForge Logo" border="0" width="88" height="31"></font></a><font
-        face="Arial"> </font></td>
-        <td valign="top"><font face="arial"><b>About</b></font><hr noshade size="1">
-        <font size="2" face="Arial">CsvJdbc is a simple read-only JDBC driver that uses
-        Comma Separated Value (CSV) files as database tables. It is ideal for writing data
-        importing programs.
-        <p></p></font></td>
-</tr>
-<tr><td><font face="arial">&nbsp;</font></td>
-<td valign="top"><font face="arial"><b>How is it used</b></font><hr noshade size="1">
-        <font size="2" face="Arial">The CsvJDBC driver is used just like any other JDBC driver. This example code shows how the driver is used.
+  <tr>
+    <td><img src="CsvJdbcLogo.jpg" width="182" height="108" alt="The CsvJdbc Logo"></td>
+    <td><h1>CsvJdbc - a JDBC driver for CSV files</td>
+  </tr>
+  <tr>
+    <td align="center" valign="bottom">Hosted by <br><a href="http://sourceforge.net/projects/csvjdbc/"><img
+      src="http://sourceforge.net/sflogo.php?group_id=17973"
+      alt="SourceForge Logo" border="0" width="88" height="31"></a>
+    </td>
+    <td valign="top">
+      <h3>About</h3>
+      <hr noshade size="1">
+      <p>CsvJdbc is a simple read-only JDBC driver that uses
+      Comma Separated Value (CSV) files as database tables. It is ideal for writing data
+      importing programs.</p>
 
-<pre><font size="2">
+      <p>this driver allows you to look at a directory holding CSV files as
+      if it were a database holding tables.  since there is no real database
+      management system behind the scenes, the driver will require some more
+      information to provide full functionality</p>
+      
+    </td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td valign="top">
+      <h3>How is it used</h3>
+      <hr noshade size="1">
+      <p>The CsvJDBC driver is used just like any other JDBC driver:
+      <ul>
+        <li>load the driver class, (its full name is <tt>org.relique.jdbc.csv.CsvDriver</tt>)</li>
+        <li>use the <tt>DriverManager</tt> to get a connection to the database (the directory), </li>
+        <li>create a statement object, </li>
+        <li>use the statement object to execute a query <br/>(only SELECT is currently supported) </li>
+        <li>the result of the last action is a ResultSet.</li>
+      </ul>
+      </p>
+      
+      <p>This example code puts all above steps in practice.</p>
+
+      <pre>
 import java.sql.*;
 
 public class DemoDriver
@@ -55,7 +77,8 @@ public class DemoDriver
       // dump out the results
       while (results.next())
       {
-        System.out.println("ID= " + results.getString("ID") + "   NAME= " + results.getString("NAME"));
+        System.out.println("ID= " + results.getString("ID") +
+                        "   NAME= " + results.getString("NAME"));
       }
 
       // clean up
@@ -69,54 +92,143 @@ public class DemoDriver
     }
   }
 }
-</font></pre>
-        <p></p></font></td>
-    </tr>
+      </pre>
+      </code>
+        <p></p>
+    </td>
+  </tr>
 </tr>
-  <tr><td><font face="arial">&nbsp;</font></td>
-	        <td valign="top"><font face="arial"><b>Advanced Options</b></font><hr
-	        size="1" noshade>
-	        <p><font size="2" face="Arial">The driver also supports a number of parameters that change the default behaviour of the driver.</p>
-	        <p><font size="2" face="Arial">These properties are:</p>
-	        <p><font size="2" face="Arial">
-	         <dl>
-	          <dt><b>separator</b></dt>
-	          <dd>Used to specify a different column separator (Default is ',').</dd>
+<tr>
+  <td>&nbsp;</td>
+  <td valign="top">
+    <h3>Advanced Options</h3>
+    <hr size="1" noshade>
+    <p>The driver also supports a number of parameters that change the default behaviour of the driver.</p>
+    <p>These properties are:</p>
+    <p>
+    <dl>
+      <dt>separator</dt>
+      <dd>type: character</dd>
+      <dd>default: <tt>','</tt></dd>
+      <dd>Used to specify a different column separator.</dd>
+      
+      <dt>suppressHeaders</dt>
+      <dd>type: boolean</dd>
+      <dd>default: <tt>False</tt></dd>
+      <dd>Used to specify that the file does not contain column header information.  if <tt>False</tt>, column headers are on first line.</dd>
 
-	          <dt><b>suppressHeaders</b></dt>
-	          <dd>Used to specify if the first line contains column header information (Default is <code>false</code>; column headers are on first line).</dd>
+      <dt>headerline</dt>
+      <dd>type: string</dd>
+      <dd>default: None</dd>
+      <dd>useful in combination with above suppressHeaders, to specify a custom header line that matches the data.</dd>
+      <dd>with suppressHeaders and without headerline, all columns are named sequentially COLUMNx. </dd>
 
-	          <dt><b>fileExtension</b></dt>
-	          <dd>Used to specify a different file extension (Default is ".csv")</dd>
-	         </dl>
-	        </p>
+      <dt>fileExtension</dt>
+      <dd>type: string</dd>
+      <dd>default: <tt>".csv"</tt></dd>
+      <dd>Used to specify a different file extension.</dd>
 
-         <p><font size="2" face="Arial">This following example code shows
-         how these properties are used. </font></p>
-         <pre><font size="2">  ...
+      <dt>columnTypes</dt>
+      <dd>type: String</dd>
+      <dd>default: infer from data</dd>
+      <dd>you can use this property to provide the driver with a comma-separated string with names of SQL data types.  when you retrieve a record field with <tt>getObject</tt> (as opposed to <tt>getString</tt>), the driver will parse the string and return you a correctly typed object.</dd>
+      <dd>the order must match the column order in the file.</dd>
+      <dd>if you provide less types than the number of columns, the last type is repeated for all trailing columns.</dd>
+
+      <dt>skipLeadingLines</dt>
+      <dd>type: Integer</dd>
+      <dd>default: <tt>0</tt></dd>
+      <dd>after opening a file, skip this many lines before starting interpreting its content.</dd>
+
+      <dt>skipLeadingDataLines</dt>
+      <dd>type: Integer</dd>
+      <dd>default: <tt>0</tt></dd>
+      <dd>after reading the header from a file, skip this many lines before starting interpreting lines as records.</dd>
+
+      <dt>defectiveHeaders</dt>
+      <dd>type: Boolean</dd>
+      <dd>default: <tt>False</tt></dd>
+      <dd>in case a column name is the emtpy string, replace it with COLUMNx, where x is the ordinal identifying the column.</dd>
+
+      <dt>commentChar</dt>
+      <dd>type: Character</dd>
+      <dd>default: <tt>#</tt></dd>
+      <dd>lines before the header starting with this character are ignored.  once the header has been read, all lines are considered as holding data.</dd>
+
+      <dt>quotechar</dt>
+      <dd>type: Character</dd>
+      <dd>default: <tt>"</tt></dd>
+      <dd>how values are quoted.  useful when values contain line breaks.</dd>
+
+      <dt>timestampFormat, dateFormat, timeFormat</dt>
+      <dd>type: String</dd>
+      <dd>default: <tt>YYYYMMDD HHmm</tt>, <tt>YYYYMMDD</tt>, <tt>HHmm</tt></dd>
+      <dd>if you indicate a column to be of type Timestamp, Date or Time, the driver will try to parse each value string with these format strings to return a correctly valued typed object.</dd>
+
+      <dt>ignoreNonParseableLines</dt>
+      <dd>type: Boolean</dd>
+      <dd>default: <tt>False</tt></dd>
+      <dd>when True, unparseable lines will not cause exceptions but will be silently ignored.</dd>
+
+      <dt>indexedFiles</dt>
+      <dd>type: Boolean</dd>
+      <dd>default: <tt>False</tt></dd>
+      <dd></dd>
+
+      <dt>fileTailPrepend</dt>
+      <dd>type: Boolean</dd>
+      <dd>default: <tt>False</tt></dd>
+      <dd>columns read from the file name are prepended to the columns read from each file.  per default, they are appended to them.</dd>
+
+      <dt>indexedFiles</dt>
+      <dd>type: Boolean</dd>
+      <dd>default: <tt>False</tt></dd>
+      <dd></dd>
+
+      <dt>trimHeaders</dt>
+      <dd>type: Boolean</dd>
+      <dd>default: <tt>False</tt></dd>
+      <dd></dd>
+
+      <dt>scramblingString</dt>
+      <dd>type: Boolean</dd>
+      <dd>default: <tt>False</tt></dd>
+      <dd></dd>
+      
+    </dl>
+    </p>
+    
+    <p>This following example code shows how some of these properties can be
+    used. </p>
+    
+    <pre>  ...
 
   Properties props = new java.util.Properties();
 
-  props.put("separator","|");              // separator is a bar
-  props.put("suppressHeaders","true");     // first line contains data
-  props.put("fileExtension",".txt");       // file extension is .txt
+  props.put("separator", "|");              // separator is a bar
+  props.put("suppressHeaders", "true");     // first line contains data
+  props.put("fileExtension", ".txt");       // file extension is .txt
 
-  Connection conn = Drivermanager.getConnection(&quot;jdbc:relique:csv:&quot; + args[0],props)
+  Connection conn = Drivermanager.getConnection("jdbc:relique:csv:" + args[0], props)
 
-  ...</font>
-         </pre>
-	        <p></p></td>
-    </tr>
-<tr><td><font face="arial">&nbsp;</font></td>
-<td valign="top"><font face="arial"><b>Download</b></font><hr noshade size="1">
-        <font size="2" face="Arial">The latest version of the software can be found
-at <a href="http://www.sourceforge.net/projects/csvjdbc">http://www.sourceforge.net/projects/csvjdbc</a>.
-<p></p></font></td>
-    </tr>
+  ...
+    </pre>
+    <p></p>
+  </td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td valign="top">
+    <h3>Download</h3>
+    <hr noshade size="1">
+    <p>The latest version of the software can be found
+    at <a href="http://www.sourceforge.net/projects/csvjdbc">http://www.sourceforge.net/projects/csvjdbc</a>.
+    </p>
+  </td>
+</tr>
 </table>
 
-<p><font size="1" face="Arial"><i>Last modified: $Id: index.html,v
-1.1 2001/01/22 10:17:30 jackerm Exp $</i></font><font
-face="Arial"> </font></p>
+<p><i>Last modified: $Id: index.html,v
+1.1 2001/01/22 10:17:30 jackerm Exp $</i> </p>
 </body>
 </html>
