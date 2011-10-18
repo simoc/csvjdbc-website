@@ -195,11 +195,21 @@ public class DemoDriver
       <dd>default: <tt>False</tt></dd>
       <dd></dd>
 
-      <dt>scramblingString</dt>
-      <dd>type: Boolean</dd>
-      <dd>default: <tt>False</tt></dd>
-      <dd></dd>
+      <dt>cryptoFilterClassName</dt>
+      <dd>type: Class</dd>
+      <dd>default: <tt>null</tt></dd>
+      <dd>The full class name of a Java class that decrypts the file being read.  The class must implement interface <tt>org.relique.io.CryptoFilter</tt>.  The class <tt>org.relique.io.XORFilter</tt> included in CsvJdbc implements an XOR encryption filter.</dd>
       
+      <dt>cryptoFilterParameterTypes</dt>
+      <dd>type: String</dd>
+      <dd>default: <tt>String</tt></dd>
+      <dd>Comma-separated list of data types to pass to the constructor of the decryption class set in property <tt>cryptoFilterClassName</tt>.</dd>
+
+      <dt>cryptoFilterParameters</dt>
+      <dd>type: String</dd>
+      <dd>default: </dd>
+      <dd>Comma-separated list of values to pass to the constructor of the decryption class set in property <tt>cryptoFilterClassName</tt>.</dd>
+
     </dl>
     </p>
     
