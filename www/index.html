@@ -4,7 +4,7 @@
 <title>CsvJdbc Home</title>
 <link href="additions.css" rel="stylesheet" type="text/css" />
 
-<meta name="description" content="CsvJdbc is a simple open-source,read-only JDBC driver that uses Comma Separated Value (CSV) files as database tables. It is ideal for writing data importing programs.">
+<meta name="description" content="CsvJdbc is a simple open-source,read-only JDBC driver that uses Comma Separated Value (CSV) files as database tables. It is ideal for writing data import programs.">
 <meta name="keywords" content="CSV, JDBC, Java, Driver, open source, Comma Separated Value">
 
 </head>
@@ -26,31 +26,31 @@
       <hr noshade size="1">
       <p>CsvJdbc is a simple read-only JDBC driver that uses
       Comma Separated Value (CSV) files as database tables. It is ideal for writing data
-      importing programs.</p>
+      import programs.</p>
 
-      <p>this driver allows you to look at a directory holding CSV files as
-      if it were a database holding tables.  since there is no real database
-      management system behind the scenes, the driver will require some more
-      information to provide full functionality</p>
+      <p>This driver enables you to access a directory containing CSV files as
+      if it were a database containing tables.  Since there is no real database
+      management system behind the scenes, not all JDBC functionality is
+      implemented.</p>
       
     </td>
   </tr>
   <tr>
     <td>&nbsp;</td>
     <td valign="top">
-      <h3>How is it used</h3>
+      <h3>Usage</h3>
       <hr noshade size="1">
-      <p>The CsvJDBC driver is used just like any other JDBC driver:
+      <p>The CsvJdbc driver is used just like any other JDBC driver:
       <ul>
         <li>load the driver class, (its full name is <tt>org.relique.jdbc.csv.CsvDriver</tt>)</li>
-        <li>use the <tt>DriverManager</tt> to get a connection to the database (the directory), </li>
-        <li>create a statement object, </li>
-        <li>use the statement object to execute a query <br/>(only SELECT is currently supported) </li>
-        <li>the result of the last action is a ResultSet.</li>
+        <li>use the <tt>DriverManager</tt> to get a connection to the database (the directory)</li>
+        <li>create a statement object</li>
+        <li>use the statement object to execute a query (only SELECT is currently supported) </li>
+        <li>the result of the query is a <tt>ResultSet</tt></li>
       </ul>
       </p>
       
-      <p>This example code puts all above steps in practice.</p>
+      <p>The following example puts all of the above steps into practice.</p>
 
       <pre>
 import java.sql.*;
@@ -213,7 +213,7 @@ public class DemoDriver
     </dl>
     </p>
     
-    <p>This following example code shows how some of these properties can be
+    <p>This following example code shows how some of these properties are
     used. </p>
     
     <pre>  ...
@@ -236,13 +236,14 @@ public class DemoDriver
   <td valign="top">
     <h3>Download</h3>
     <hr noshade size="1">
-    <p>The latest version of the software can be found
-    at <a href="http://www.sourceforge.net/projects/csvjdbc">http://www.sourceforge.net/projects/csvjdbc</a>.
+    <p>The latest version of the software is available from
+    <a href="http://www.sourceforge.net/projects/csvjdbc">sourceforge.net</a>.
     </p>
   </td>
 </tr>
 </table>
 
+<p></p>
 <p><i>Last modified: $Id$</i> </p>
 </body>
 </html>
