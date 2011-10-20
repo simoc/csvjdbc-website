@@ -10,12 +10,11 @@ code, pre { display: block;
             border: 1px solid #5581C0;
             padding: 3px 18px 3px 30px;
             margin: 1em 0 1em 0;
-            line-height: 18px;
             font-weight: normal!important;
             }
 pre { font-size: 71% }
 h1, h3, h4, p, li, dt, dd { font-family: helvetica, arial, sans-serif;} 
-p { line-height: 20pt;
+p {
     margin: 0 5em 6pt 0;
 } 
 dt { font-weight: bold;
