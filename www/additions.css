@@ -1,4 +1,4 @@
-tt { font-family: 1em Courier, Fixed, monospace; 
+tt { font-family: Courier, Fixed, monospace; 
      font-size: 110%;
      font-weight: bold } 
 code, pre { display: block;
@@ -14,7 +14,7 @@ code, pre { display: block;
             font-weight: normal!important;
             }
 pre { font-size: 71% }
-h3, h4, p, li, dt, dd { font-family: helvetica, arial, sans-serif;} 
+h1, h3, h4, p, li, dt, dd { font-family: helvetica, arial, sans-serif;} 
 p { line-height: 20pt;
     margin: 0 5em 6pt 0;
 } 
