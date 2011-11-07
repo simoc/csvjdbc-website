@@ -343,6 +343,11 @@ SELECT [table-alias.]column [[AS] alias], ... FROM table [[AS] table-alias]
       <dd>default: </dd>
       <dd>Comma-separated list of values to pass to the constructor of the decryption class set in property <b>cryptoFilterClassName</b>.</dd>
 
+      <dt>raiseUnsupportedOperationException</dt>
+      <dd>type: Boolean</dd>
+      <dd>default: <tt>True</tt></dd>
+      <dd>when True, calls to functions in the JDBC driver for features that are not available (such as transaction handling) will throw an <tt>SQLException</tt>.  When False, the functions do nothing and return a default value.</dd>
+
     </dl>
     </p>
     
