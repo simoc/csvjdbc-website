@@ -25,11 +25,11 @@
       <br>
       <a href="#about">About</a>
       <br>
+      <a href="#usage">Usage</a>
+      <br>
       <a href="#features">Features</a>
       <br>
       <a href="#requirements">Requirements</a>
-      <br>
-      <a href="#usage">Usage</a>
       <br>
       <a href="#driveroptions">Driver Options</a>
       <br>
@@ -59,38 +59,6 @@
       if it were a database containing tables.  As there is no real database
       management system behind the scenes, not all JDBC functionality is
       available.</p>
-
-      <a name="features"></a> 
-      <h3>Features</h3>
-      <hr noshade size="1">
-      <p>CsvJdbc accepts only SQL SELECT queries from a single table and does not support INSERT, UPDATE, DELETE or CREATE statements.
-      Joins between tables in SQL SELECT queries are not supported.</p>
-      <p>SQL SELECT queries must be of the following format.</p>
-      <pre>
-SELECT [table-alias.]column [[AS] alias], ... FROM table [[AS] table-alias]
-  WHERE [NOT] condition [AND | OR condition] ...</pre>
-      <p>Each column is either a named column,
-      <tt>*</tt>,
-      a constant value,
-      <tt>NULL</tt>,
-      or an expression including operations <tt>+</tt>, <tt>-</tt>,
-      <tt>/</tt>, <tt>*</tt> and parentheses.
-      Supported comparisons in the optional WHERE clause are
-      <tt>&lt;</tt>,
-      <tt>&gt;</tt>,
-      <tt>&lt;=</tt>,
-      <tt>&gt=</tt>,
-      <tt>=</tt>,
-      <tt>!=</tt>,
-      <tt>&lt&gt;</tt>,
-      <tt>BETWEEN</tt>,
-      <tt>LIKE</tt>,
-      <tt>IS NULL</tt>.</p>
-
-      <a name="requirements"></a> 
-      <h3>Requirements</h3>
-      <hr noshade size="1">
-      <p>CsvJdbc requires Java version 1.6, or later.</p>
 
       <a name="usage"></a> 
       <h3>Usage</h3>
@@ -143,13 +111,84 @@ public class DemoDriver
     }
     catch(Exception e)
     {
-      System.out.println("Oops-> " + e);
+      e.printStackTrace();
     }
   }
 }
       </pre>
-      </code>
-        <p></p>
+        <p>To read several files (for example, daily log files) as a single
+	table, set the database connection property <tt>indexedFiles</tt>.
+	The following example demonstrates how to do this.
+	</p>
+      <pre>
+import java.sql.*;
+
+public class DemoDriver2
+{
+  public static void main(String[] args)
+  {
+    try
+    {
+      Class.forName("org.relique.jdbc.csv.CsvDriver");
+      Properties props = new Properties();
+      props.put("fileExtension", ".txt");
+      props.put("indexedFiles", "true");
+      // We want to read test-001-20081112.txt, test-002-20081113.txt and many other files matching this pattern.
+      props.put("fileTailPattern", "-(\\d+)-(\\d+)");
+      // Make the two groups in the regular expression available as additional table columns.
+      props.put("fileTailParts", "Seqnr,Logdatum");
+      Connection conn = DriverManager.getConnection("jdbc:relique:csv:" + args[0], props);
+      Statement stmt = conn.createStatement();
+      ResultSet results = stmt.executeQuery("SELECT Datum, Station, Seqnr, Logdatum FROM test");
+      ResultSetMetaData meta = results.getMetaData();
+      while (results.next())
+      {
+    	for (int i = 0; i &lt; meta.getColumnCount(); i++)
+          System.out.println(meta.getColumnName(i + 1) + " " + results.getString(i + 1));
+      }
+      results.close();
+      stmt.close();
+      conn.close();
+    }
+    catch(Exception e)
+    {
+      e.printStackTrace();
+    }
+  }
+}</pre>
+      <p></p>
+
+      <a name="features"></a> 
+      <h3>Features</h3>
+      <hr noshade size="1">
+      <p>CsvJdbc accepts only SQL SELECT queries from a single table and does not support INSERT, UPDATE, DELETE or CREATE statements.
+      Joins between tables in SQL SELECT queries are not supported.</p>
+      <p>SQL SELECT queries must be of the following format.</p>
+      <pre>
+SELECT [table-alias.]column [[AS] alias], ... FROM table [[AS] table-alias]
+  WHERE [NOT] condition [AND | OR condition] ...</pre>
+      <p>Each column is either a named column,
+      <tt>*</tt>,
+      a constant value,
+      <tt>NULL</tt>,
+      or an expression including operations <tt>+</tt>, <tt>-</tt>,
+      <tt>/</tt>, <tt>*</tt> and parentheses.
+      Supported comparisons in the optional WHERE clause are
+      <tt>&lt;</tt>,
+      <tt>&gt;</tt>,
+      <tt>&lt;=</tt>,
+      <tt>&gt=</tt>,
+      <tt>=</tt>,
+      <tt>!=</tt>,
+      <tt>&lt&gt;</tt>,
+      <tt>BETWEEN</tt>,
+      <tt>LIKE</tt>,
+      <tt>IS NULL</tt>.</p>
+
+      <a name="requirements"></a> 
+      <h3>Requirements</h3>
+      <hr noshade size="1">
+      <p>CsvJdbc requires Java version 1.6, or later.</p>
 
     <a name="driveroptions"></a> 
     <h3>Driver Options</h3>
