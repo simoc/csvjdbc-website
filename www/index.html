@@ -263,10 +263,12 @@ SELECT [table-alias.]column [[AS] alias], ... FROM table [[AS] table-alias]
 
       <dt>columnTypes</dt>
       <dd>type: String</dd>
-      <dd>default: infer from data</dd>
-      <dd>you can use this property to provide the driver with a comma-separated string with names of SQL data types.  when you retrieve a record field with <tt>getObject</tt> (as opposed to <tt>getString</tt>), the driver will parse the string and return you a correctly typed object.</dd>
-      <dd>the order must match the column order in the file.</dd>
-      <dd>if you provide less types than the number of columns, the last type is repeated for all trailing columns.</dd>
+      <dd>default: all Strings</dd>
+      <dd>this property defines SQL data types for tables as a comma-separated list.  When record fields are retrieved with <tt>getObject</tt> (as opposed to <tt>getString</tt>), the driver will parse the value and return a correctly typed object.
+      The order must match the column order in the file.
+      If less data types than the number of columns are provided, the last type is repeated for all trailing columns.
+      If <b>columnTypes</b> is set to an empty string then column types are inferred from the data.
+      When working with multiple tables with different column types, define <b>columnTypes</b> with the format <tt>T1:Int,String,T2:Int,Double</tt> to define the column types for tables <tt>T1</tt> and <tt>T2</tt>.</dd>
 
       <dt>skipLeadingLines</dt>
       <dd>type: Integer</dd>
