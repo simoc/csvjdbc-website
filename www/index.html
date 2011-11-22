@@ -273,7 +273,7 @@ SELECT [table-alias.]column [[AS] alias], ... FROM table [[AS] table-alias]
       <dd>default: None</dd>
       <dd>Used in combination with the <b>suppressHeaders</b> property to specify a custom header line for tables.
       With <b>suppressHeaders</b> set and <b>headerline</b> not set, all columns are named sequentially <tt>COLUMN1</tt>, <tt>COLUMN2</tt>, ...
-      When working with multiple tables with different headers, define <b>headerline</b> with the format <tt>T1\nID,NAME\nT2\nID,AGE,WEIGHT</tt> to define the header lines for tables <tt>T1</tt> and <tt>T2</tt>.</dd>
+      When working with multiple tables with different headers, define properties named <b>headerline.CATS</b> and <b>headerline.DOGS</b> to define different header lines for tables <tt>CATS</tt> and <tt>DOGS</tt>.</dd>
       </dd>
 
       <dt>fileExtension</dt>
@@ -288,7 +288,7 @@ SELECT [table-alias.]column [[AS] alias], ... FROM table [[AS] table-alias]
       The order must match the column order in the file.
       If less data types than the number of columns are provided, the last type is repeated for all trailing columns.
       If <b>columnTypes</b> is set to an empty string then column types are inferred from the data.
-      When working with multiple tables with different column types, define <b>columnTypes</b> with the format <tt>T1:Int,String,T2:Int,Double</tt> to define the column types for tables <tt>T1</tt> and <tt>T2</tt>.</dd>
+      When working with multiple tables with different column types, define properties named <b>columnTypes.CATS</b> and <b>columnTypes.DOGS</b> to define different column types for tables <tt>CATS</tt> and <tt>DOGS</tt>.</dd>
 
       <dt>skipLeadingLines</dt>
       <dd>type: Integer</dd>
