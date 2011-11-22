@@ -1,10 +1,10 @@
 body {
-    font-family: helvetica, arial, sans-serif;
+    font-family: verdana, geneva, arial, sans-serif;
     margin: 0;
     padding: 0;
 }
-tt { font-family: Courier, Fixed, monospace; 
-     font-size: 15px;
+tt { font-family: Courier New, Fixed, monospace; 
+     font-size: 13px;
      font-weight: bold
 } 
 pre { display: block;
@@ -13,7 +13,7 @@ pre { display: block;
             border: 1px solid #5581C0;
             padding: 6px 18px 5px 30px;
             margin: 0 0 8px 0;
-            font: Courier, Fixed, monospace;
+            font: Courier New, Fixed, monospace;
             color: #000;
             font-weight: normal!important;
 	    font-size: 12px;
@@ -29,7 +29,7 @@ a {
     color: black;
 }
 li, dd, dt, a, p {
-    font-size: 15px;
+    font-size: 13px;
 }
 a:hover {
     background-color: #ff9126;
