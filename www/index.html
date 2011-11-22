@@ -308,12 +308,17 @@ SELECT [table-alias.]column [[AS] alias], ... FROM table [[AS] table-alias]
       <dt>commentChar</dt>
       <dd>type: Character</dd>
       <dd>default: </dd>
-      <dd>Lines before the header starting with this character are ignored.  After the header has been read, all lines are considered as holding data.</dd>
+      <dd>Lines before the header starting with this character are ignored.  After the header has been read, all lines are interpreted as data.</dd>
 
       <dt>quotechar</dt>
       <dd>type: Character</dd>
       <dd>default: <tt>"</tt></dd>
-      <dd>how values are quoted.  useful when values contain line breaks.</dd>
+      <dd>Defines quote character.  Column values surrounded with the quote character are parsed with the quote characters removed. This is useful when values contain the separator character or line breaks.  Only one character is allowed.</dd>
+
+      <dt>quoteStyle</dt>
+      <dd>type: String</dd>
+      <dd>default: <tt>SQL</tt></dd>
+      <dd>Defines how a quote character is interpreted inside a quoted value.  When <tt>SQL</tt>, a pair of quote characters together is interpreted as a single quote character.  When <tt>C</tt>, a backslash followed by a quote character is interpreted as a single quote character.</dd>
 
       <dt>timestampFormat, dateFormat, timeFormat</dt>
       <dd>type: String</dd>
