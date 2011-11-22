@@ -134,18 +134,25 @@ public class DemoDriver2
       Properties props = new Properties();
       props.put("fileExtension", ".txt");
       props.put("indexedFiles", "true");
-      // We want to read test-001-20081112.txt, test-002-20081113.txt and many other files matching this pattern.
+      // We want to read test-001-20081112.txt, test-002-20081113.txt and many
+      // other files matching this pattern.
       props.put("fileTailPattern", "-(\\d+)-(\\d+)");
-      // Make the two groups in the regular expression available as additional table columns.
+      // Make the two groups in the regular expression available as
+      // additional table columns.
       props.put("fileTailParts", "Seqnr,Logdatum");
-      Connection conn = DriverManager.getConnection("jdbc:relique:csv:" + args[0], props);
+      Connection conn = DriverManager.getConnection("jdbc:relique:csv:" +
+        args[0], props);
       Statement stmt = conn.createStatement();
-      ResultSet results = stmt.executeQuery("SELECT Datum, Station, Seqnr, Logdatum FROM test");
+      ResultSet results = stmt.executeQuery("SELECT Datum, Station, " +
+        "Seqnr, Logdatum FROM test");
       ResultSetMetaData meta = results.getMetaData();
       while (results.next())
       {
-    	for (int i = 0; i &lt; meta.getColumnCount(); i++)
-          System.out.println(meta.getColumnName(i + 1) + " " + results.getString(i + 1));
+        for (int i = 0; i &lt; meta.getColumnCount(); i++)
+        {
+          System.out.println(meta.getColumnName(i + 1) + " " +
+            results.getString(i + 1));
+        }
       }
       results.close();
       stmt.close();
@@ -179,9 +186,11 @@ public class DemoDriver3
       props.put("suppressHeaders", "true");
       props.put("headerline", "ID,ANGLE,MEASUREDATE");
       props.put("columnTypes", "Int,Double,Date");
-      Connection conn = DriverManager.getConnection("jdbc:relique:csv:" + args[0], props);
+      Connection conn = DriverManager.getConnection("jdbc:relique:csv:" +
+        args[0], props);
       Statement stmt = conn.createStatement();
-      ResultSet results = stmt.executeQuery("SELECT Id, Angle * 180 / 3.1415 as A, MeasureDate FROM t1 where Id &gt; 1001");
+      ResultSet results = stmt.executeQuery("SELECT Id, Angle * 180 / 3.1415 as A, " +
+        "MeasureDate FROM t1 where Id &gt; 1001");
       while (results.next())
       {
     	  // Fetch column values with methods that match the column data types.
