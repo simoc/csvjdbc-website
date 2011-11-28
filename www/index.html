@@ -217,6 +217,63 @@ public class DemoDriver3
     }
   }
 }</pre>
+      <p>To read data held inside the Java application instead of a CSV file, create
+      a Java class that implements the interface <tt>org.relique.io.TableReader</tt>
+      and give this class name in the connection URL.
+      CsvJdbc then creates an instance of this class and calls the <tt>getReader</tt> method
+      to obtain a <tt>java.io.Reader</tt> for each database table being read.
+      This is demonstrated in the following two Java classes.</p>
+      <pre>
+import java.io.*;
+import java.sql.*;
+import java.util.*;
+
+import org.relique.io.TableReader;
+
+public class MyTableReader implements TableReader
+{
+  public Reader getReader(Statement statement, String tableName) throws SQLException
+  {
+    if (tableName.equalsIgnoreCase("ELEMENT"))
+      return new StringReader("ATOMIC_NUMBER,SYMBOL,NAME\n1,H,Hydrogen\n2,He,Helium\n3,Li,Lithium\n");
+    throw new SQLException("Table does not exist: " + tableName);
+  }
+
+  public List getTableNames(Connection connection) throws SQLException
+  {
+    Vector v = new Vector();
+    v.add("ELEMENT");
+    return v;
+  }
+}
+</pre>
+<pre>
+import java.sql.*;
+
+public class DemoDriver4
+{
+  public static void main(String []args)
+  {
+    try
+    {
+      Class.forName("org.relique.jdbc.csv.CsvDriver");
+      // Give name of Java class that provides database tables.
+      Connection conn = DriverManager.getConnection("jdbc:relique:csv:class:" +
+        MyTableReader.class.getName());
+      Statement stmt = conn.createStatement();
+      ResultSet results = stmt.executeQuery("SELECT Atomic_Number from element where Symbol='Li'");
+      results.next();
+      System.out.println(results.getString(1));
+      results.close();
+      stmt.close();
+      conn.close();
+    }
+    catch (Exception e)
+    {
+      e.printStackTrace();
+    }
+  }
+}</pre>
       <p></p>
 
       <a name="features"></a> 
