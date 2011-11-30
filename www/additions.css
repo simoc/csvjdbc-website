@@ -13,7 +13,7 @@ pre { display: block;
             border: 1px solid #5581C0;
             padding: 6px 18px 5px 30px;
             margin: 0 0 8px 0;
-            font: Courier New, Fixed, monospace;
+            font-family: Courier New, Fixed, monospace;
             color: #000;
             font-weight: normal!important;
 	    font-size: 12px;
