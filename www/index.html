@@ -46,6 +46,9 @@
       <a href="http://sourceforge.net/scm/?type=git&group_id=17973">git Repository</a>
       <br>
       <img src="bullet.png">&nbsp;
+      <a href="#building">Building From Source</a>
+      <br>
+      <img src="bullet.png">&nbsp;
       <a href="#license">License</a>
       <br>
       <img src="bullet.png">&nbsp;
@@ -454,6 +457,22 @@ SELECT [table-alias.]column [[AS] alias], ... FROM table [[AS] table-alias]
 
   ...
     </pre>
+
+      <a name="building"></a> 
+      <h3>Building From Source</h3>
+      <hr noshade size="1">
+      <p>To checkout and build the latest CsvJdbc source code, use the
+      following commands (<a href="http://git-scm.com/">git</a> and
+      <a href="http://ant.apache.org">ant</a> must first be installed).</p>
+<pre>git clone git://csvjdbc.git.sourceforge.net/gitroot/csvjdbc/csvjdbc
+cd csvjdbc
+cd build
+ant jar
+cd ..
+cd release
+dir csvjdbc.jar
+</pre>
+
 
       <a name="license"></a> 
       <h3>License</h3>
