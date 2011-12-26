@@ -227,7 +227,7 @@ public class DemoDriver3
   }
 }</pre>
       <p>To read the compressed files inside a ZIP file as database tables, make
-      a database connection to the ZIP file using the format <tt>jdbc:relique:csv:zip:filename.zip</tt>.
+      a database connection to the ZIP file using the JDBC connecting string format <tt>jdbc:relique:csv:zip:filename.zip</tt>.
       This is demonstrated in the following example.
       </p>
 
@@ -334,7 +334,9 @@ SELECT [table-alias.]column [[AS] alias], ... FROM table [[AS] table-alias]
       <tt>*</tt>,
       a constant value,
       <tt>NULL</tt>,
-      or an expression including operations <tt>+</tt>, <tt>-</tt>,
+      or an expression including functions
+      <tt>LOWER</tt>, <tt>UPPER</tt> and
+      operations <tt>+</tt>, <tt>-</tt>,
       <tt>/</tt>, <tt>*</tt> and parentheses.
       Supported comparisons in the optional WHERE clause are
       <tt>&lt;</tt>,
