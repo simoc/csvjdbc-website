@@ -71,7 +71,9 @@
       Comma Separated Value (CSV) files as database tables. It is ideal for writing data
       import programs.</p>
 
-      <p>The driver enables you to access a directory containing CSV files as
+      <p>The driver enables you to access a directory
+      or a ZIP file
+      containing CSV files as
       if it were a database containing tables.  As there is no real database
       management system behind the scenes, not all JDBC functionality is
       available.</p>
@@ -82,7 +84,7 @@
       <p>The CsvJdbc driver is used just like any other JDBC driver:
       <ul>
         <li>load the driver class, (its full name is <tt>org.relique.jdbc.csv.CsvDriver</tt>)</li>
-        <li>use the <tt>DriverManager</tt> to get a connection to the database (the directory)</li>
+        <li>use the <tt>DriverManager</tt> to get a connection to the database (the directory or ZIP file)</li>
         <li>create a statement object</li>
         <li>use the statement object to execute an SQL SELECT query</li>
         <li>the result of the query is a <tt>ResultSet</tt></li>
