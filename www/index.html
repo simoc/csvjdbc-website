@@ -17,7 +17,7 @@
     <td><img src="CsvJdbcLogo.png" width="182" height="108" alt="The CsvJdbc Logo"></td>
     <td>
       <h1>CsvJdbc</h1>
-      <p class="tagline">a JDBC driver for reading comma-separated-value files</p>
+      <p class="tagline">a Java JDBC driver for reading comma-separated-value files</p>
     </td>
   </tr>
   <tr>
@@ -224,6 +224,42 @@ public class DemoDriver3
     }
   }
 }</pre>
+      <p>To read the compressed files inside a ZIP file as database tables, make
+      a database connection to the ZIP file using the format <tt>jdbc:relique:csv:zip:filename.zip</tt>.
+      This is demonstrated in the following example.
+      </p>
+
+<pre>import java.sql.*;
+import java.util.Properties;
+
+public class DemoDriver4
+{
+  public static void main(String[] args)
+  {
+    try
+    {
+      Class.forName("org.relique.jdbc.csv.CsvDriver");
+      String zipFilename = args[0];
+      Connection conn = DriverManager.getConnection("jdbc:relique:csv:zip:" +
+        zipFilename);
+      Statement stmt = conn.createStatement();
+      // Read from file mytable.csv inside the ZIP file
+      ResultSet results = stmt.executeQuery("SELECT * FROM mytable");
+      while (results.next())
+      {
+          System.out.println(results.getString("COUNTRY"));
+      }
+      results.close();
+      stmt.close();
+      conn.close();
+    }
+    catch(Exception e)
+    {
+      e.printStackTrace();
+    }
+  }
+}
+</pre>
       <p>To read data held inside the Java application instead of a CSV file, create
       a Java class that implements the interface <tt>org.relique.io.TableReader</tt>
       and give this class name in the connection URL.
@@ -257,7 +293,7 @@ public class MyTableReader implements TableReader
 <pre>
 import java.sql.*;
 
-public class DemoDriver4
+public class DemoDriver5
 {
   public static void main(String []args)
   {
