@@ -49,6 +49,9 @@
       <a href="#building">Building From Source</a>
       <br>
       <img src="bullet.png">&nbsp;
+      <a href="#maven">Building With Maven</a>
+      <br>
+      <img src="bullet.png">&nbsp;
       <a href="#license">License</a>
       <br>
       <img src="bullet.png">&nbsp;
@@ -519,6 +522,31 @@ ant jar
 cd ..
 cd release
 dir csvjdbc.jar
+</pre>
+
+      <a name="maven"></a> 
+      <h3>Building With Maven</h3>
+      <hr noshade size="1">
+      <p>To include CsvJdbc in a
+      <a href="http://maven.apache.org/">Maven</a> project,
+      add the following lines to the <tt>pom.xml</tt> file.</p>
+<pre>
+&lt;project&gt;
+ ...
+  &lt;repositories&gt;
+    &lt;repository&gt;
+      &lt;id&gt;SourceForge&lt;/id&gt;
+      &lt;url&gt;http://csvjdbc.sourceforge.net/maven2&lt;/url&gt;
+    &lt;/repository&gt;
+  &lt;/repositories&gt;
+
+  &lt;dependencies&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;net.sourceforge.csvjdbc&lt;/groupId&gt;
+      &lt;artifactId&gt;csvjdbc&lt;/artifactId&gt;
+      &lt;version&gt;1.0.7&lt;/version&gt;
+    &lt;/dependency&gt;
+  &lt;/dependencies&gt;
 </pre>
 
 
