@@ -265,7 +265,9 @@ public class DemoDriver4
   }
 }
 </pre>
-      <p>To read data held inside the Java application instead of a CSV file, create
+      <p>To read data that is either held inside the Java application (for
+      example, in a JAR file) or accessed remotely (for example, using
+      HTTP requests), create
       a Java class that implements the interface <tt>org.relique.io.TableReader</tt>
       and give this class name in the connection URL.
       CsvJdbc then creates an instance of this class and calls the <tt>getReader</tt> method
