@@ -333,7 +333,8 @@ public class DemoDriver5
       Joins between tables in SQL SELECT queries are not supported.</p>
       <p>SQL SELECT queries must be of the following format.</p>
       <pre>
-SELECT [table-alias.]column [[AS] alias], ... FROM table [[AS] table-alias]
+SELECT [DISTINCT] [table-alias.]column [[AS] alias], ...
+  FROM table [[AS] table-alias]
   WHERE [NOT] condition [AND | OR condition] ... ORDER BY column [ASC | DESC] ...</pre>
       <p>Each column is either a named column,
       <tt>*</tt>,
