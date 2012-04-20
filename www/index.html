@@ -72,7 +72,7 @@
       <hr noshade size="1">
       <p>CsvJdbc is a simple read-only JDBC driver that uses
       Comma Separated Value (CSV) files as database tables. It is ideal for writing data
-      import programs.</p>
+      import programs or analyzing log files.</p>
 
       <p>The driver enables you to access a directory
       or a ZIP file
@@ -335,7 +335,8 @@ public class DemoDriver5
       <pre>
 SELECT [DISTINCT] [table-alias.]column [[AS] alias], ...
   FROM table [[AS] table-alias]
-  WHERE [NOT] condition [AND | OR condition] ... ORDER BY column [ASC | DESC] ...</pre>
+  WHERE [NOT] condition [AND | OR condition] ...
+  ORDER BY column [ASC | DESC] ...</pre>
       <p>Each column is either a named column,
       <tt>*</tt>,
       a constant value,
