@@ -485,10 +485,17 @@ SELECT [DISTINCT] [table-alias.]column [[AS] alias], ...
       <dd>default: <tt>False</tt></dd>
       <dd>Used to specify that the file does not contain column header information.  if <tt>False</tt>, column headers are on first line.</dd>
 
-      <dt>timestampFormat, dateFormat, timeFormat</dt>
+      <dt>timestampFormat, timeFormat, dateFormat</dt>
       <dd>type: String</dd>
-      <dd>default: <tt>YYYYMMDD HHmm</tt>, <tt>YYYYMMDD</tt>, <tt>HHmm</tt></dd>
-      <dd>if you indicate a column to be of type Timestamp, Date or Time, the driver will try to parse each value string with these format strings to return a correctly valued typed object.</dd>
+      <dd>default: <tt>YYYY-MM-DD HH:mm:ss</tt>, <tt>HH:mm:ss</tt>, <tt>YYYY-MM-DD</tt></dd>
+      <dd>Defines the format from which columns of type Timestamp, Date and Time are parsed.</dd>
+
+      <dt>timeZoneName</dt>
+      <dd>type: String</dd>
+      <dd>default: <tt>UTC</tt></dd>
+      <dd>The time zone of Timestamp columns. To use the time zone of the
+      computer, set this to the value returned
+      by the method <tt>java.util.TimeZone.getDefault().getID()</tt>.</dd>
 
       <dt>trimHeaders</dt>
       <dd>type: Boolean</dd>
@@ -508,6 +515,7 @@ SELECT [DISTINCT] [table-alias.]column [[AS] alias], ...
   props.put("separator", "|");              // separator is a bar
   props.put("suppressHeaders", "true");     // first line contains data
   props.put("fileExtension", ".txt");       // file extension is .txt
+  props.put("timeZoneName", "America/Los_Angeles"); // timestamps are Los Angeles time
 
   Connection conn = Drivermanager.getConnection("jdbc:relique:csv:" + args[0], props);
 
