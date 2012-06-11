@@ -519,9 +519,15 @@ SELECT [DISTINCT] [table-alias.]column [[AS] alias], ...
   props.put("fileExtension", ".txt");       // file extension is .txt
   props.put("timeZoneName", "America/Los_Angeles"); // timestamps are Los Angeles time
 
-  Connection conn = Drivermanager.getConnection("jdbc:relique:csv:" + args[0], props);
+  Connection conn1 = Drivermanager.getConnection("jdbc:relique:csv:" + args[0], props);
 
   ...
+
+  // Connections using a URL string containing both directory and
+  // properties are also accepted (class java.net.URLEncoder is useful
+  // for encoding property values containing special characters).
+  Connection conn2 = DriverManager.getConnection("jdbc:relique:csv:" + args[0] +
+    "?separator=%7C&amp;fileExtension=.txt&amp;suppressHeaders=true");
     </pre>
 
       <a name="building"></a> 
