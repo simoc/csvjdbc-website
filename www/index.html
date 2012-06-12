@@ -524,10 +524,11 @@ SELECT [DISTINCT] [table-alias.]column [[AS] alias], ...
   ...
 
   // Connections using a URL string containing both directory and
-  // properties are also accepted (class java.net.URLEncoder is useful
-  // for encoding property values containing special characters).
+  // properties are also accepted (class java.net.URLEncoder encodes
+  // URL strings containing special characters).
   Connection conn2 = DriverManager.getConnection("jdbc:relique:csv:" + args[0] +
-    "?separator=%7C&amp;fileExtension=.txt&amp;suppressHeaders=true");
+    "?separator=" + URLEncoder.encode("|", "UTF-8") +
+    "&amp;fileExtension=.txt&amp;suppressHeaders=true");
     </pre>
 
       <a name="building"></a> 
