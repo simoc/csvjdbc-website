@@ -53,3 +53,19 @@ p.lastmodified {
     color: #666;
     padding-left: 8px;
 }
+a.styled-button-1 {
+	-webkit-box-shadow:rgba(0,0,0,0.2) 0 1px 0 0;
+	-moz-box-shadow:rgba(0,0,0,0.2) 0 1px 0 0;
+	box-shadow:rgba(0,0,0,0.2) 0 1px 0 0;
+	color: black;
+	background-color:#ff9126;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border:none;
+	font-size:16px;
+	font-weight:700;
+	height:32px;
+	padding:4px 16px;
+        text-decoration: none;
+}
