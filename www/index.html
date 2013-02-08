@@ -344,9 +344,14 @@ SELECT [DISTINCT] [table-alias.]column [[AS] alias], ...
       <tt>NULL</tt>,
       <tt>CURRENT_DATE</tt>,
       or an expression including functions
-      <tt>AVG</tt>, <tt>COUNT</tt>, <tt>LOWER</tt>, <tt>MAX</tt>, <tt>MIN</tt>,
-      <tt>ROUND</tt>, <tt>SUM</tt>, <tt>UPPER</tt> and
-      operations <tt>+</tt>, <tt>-</tt>,
+      <tt>LOWER</tt>,
+      <tt>ROUND</tt>,
+      <tt>UPPER</tt>,
+      aggregate functions
+      <tt>AVG</tt>, <tt>COUNT</tt>,
+      <tt>MAX</tt>, <tt>MIN</tt>,
+      <tt>SUM</tt>
+      and operations <tt>+</tt>, <tt>-</tt>,
       <tt>/</tt>, <tt>*</tt> and parentheses.
       Supported comparisons in the optional WHERE clause are
       <tt>&lt;</tt>,
@@ -361,6 +366,11 @@ SELECT [DISTINCT] [table-alias.]column [[AS] alias], ...
       <tt>LIKE</tt>,
       <tt>IS NULL</tt>,
       <tt>IN</tt>.
+      </p>
+      <p>
+      For queries containing <tt>ORDER BY</tt>, all records are read into memory and sorted.
+      For queries containing <tt>GROUP BY</tt> plus an aggregate function, all records are read into memory and grouped.
+      For other queries, CsvJdbc holds only one record at a time in memory.
       </p>
 
       <a name="requirements"></a> 
