@@ -488,11 +488,6 @@ SELECT [DISTINCT] [table-alias.]column [[AS] alias], ...
       <dd>default: <tt>SQL</tt></dd>
       <dd>Defines how a quote character is interpreted inside a quoted value.  When <tt>SQL</tt>, a pair of quote characters together is interpreted as a single quote character.  When <tt>C</tt>, a backslash followed by a quote character is interpreted as a single quote character.</dd>
 
-      <dt>raiseUnsupportedOperationException</dt>
-      <dd>type: Boolean</dd>
-      <dd>default: <tt>True</tt></dd>
-      <dd>when True, calls to functions in the JDBC driver for features that are not available (such as commit or rollback) will throw an <tt>SQLException</tt>.  When False, the functions do nothing and return a default value.</dd>
-
       <dt>separator</dt>
       <dd>type: character</dd>
       <dd>default: <tt>','</tt></dd>
