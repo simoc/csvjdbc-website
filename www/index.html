@@ -108,7 +108,8 @@ public class DemoDriver
       Class.forName("org.relique.jdbc.csv.CsvDriver");
 
       // create a connection. The first command line parameter is assumed to
-      //  be the directory in which the .csv files are held
+      // be the directory in which the .csv files are held
+      // A single connection is thread-safe for use by several threads.
       Connection conn = DriverManager.getConnection("jdbc:relique:csv:" + args[0]);
 
       // create a Statement object to execute the query with
