@@ -104,28 +104,29 @@ public class DemoDriver
   {
     try
     {
-      // load the driver into memory
+      // Load the driver.
       Class.forName("org.relique.jdbc.csv.CsvDriver");
 
-      // create a connection. The first command line parameter is assumed to
-      // be the directory in which the .csv files are held
+      // Create a connection. The first command line parameter is
+      // the directory containing the .csv files.
       // A single connection is thread-safe for use by several threads.
       Connection conn = DriverManager.getConnection("jdbc:relique:csv:" + args[0]);
 
-      // create a Statement object to execute the query with
+      // Create a Statement object to execute the query with.
+      // A Statement is not thread-safe.
       Statement stmt = conn.createStatement();
 
       // Select the ID and NAME columns from sample.csv
       ResultSet results = stmt.executeQuery("SELECT ID,NAME FROM sample");
 
-      // dump out the results
+      // Dump out the results
       while (results.next())
       {
         System.out.println("ID= " + results.getString("ID") +
                         "   NAME= " + results.getString("NAME"));
       }
 
-      // clean up
+      // Clean up
       results.close();
       stmt.close();
       conn.close();
