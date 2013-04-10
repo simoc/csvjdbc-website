@@ -4,6 +4,7 @@
 <title>CsvJdbc Home</title>
 <link rel="Shortcut Icon" href="favicon.png">
 <link href="additions.css" rel="stylesheet" type="text/css" />
+<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=java"></script>
 
 <meta name="description" content="CsvJdbc is a simple open-source,read-only JDBC driver that uses Comma Separated Value (CSV) files as database tables. It is ideal for writing data import programs.">
 <meta name="keywords" content="CSV, JDBC, Java, Driver, open source, Comma Separated Value">
@@ -95,7 +96,7 @@
 
       <p>The following example puts all of the above steps into practice.</p>
 
-      <pre>
+      <pre class="prettyprint lang-java">
 import java.sql.*;
 
 public class DemoDriver
@@ -136,13 +137,12 @@ public class DemoDriver
       e.printStackTrace();
     }
   }
-}
-      </pre>
+}</pre>
         <p>Like other databases, creating a scrollable statement enables
 	scrolling forwards and backwards through result sets.
 	This is demonstrated in the following example.
 	</p>
-      <pre>
+      <pre class="prettyprint lang-java">
 package org.relique.jdbc.csv;
 
 import java.sql.*;
@@ -184,13 +184,12 @@ public class DemoDriver2
       e.printStackTrace();
     }
   }
-}
-      </pre>
+}</pre>
         <p>To read several files (for example, daily log files) as a single
 	table, set the database connection property <tt>indexedFiles</tt>.
 	The following example demonstrates how to do this.
 	</p>
-      <pre>
+      <pre class="prettyprint lang-java">
 import java.sql.*;
 import java.util.Properties;
 
@@ -240,7 +239,7 @@ public class DemoDriver3
       statement and to enable them be fetched using <tt>ResultSet.getInt</tt>,
       <tt>getDouble</tt>, <tt>getTime</tt> and other <tt>ResultSet.get</tt>
       methods.</p>
-      <pre>
+      <pre class="prettyprint lang-java">
 import java.sql.*;
 import java.util.Properties;
 
@@ -283,7 +282,7 @@ public class DemoDriver4
       This is demonstrated in the following example.
       </p>
 
-<pre>import java.sql.*;
+<pre class="prettyprint lang-java">import java.sql.*;
 import java.util.Properties;
 
 public class DemoDriver5
@@ -322,7 +321,7 @@ public class DemoDriver5
       CsvJdbc then creates an instance of this class and calls the <tt>getReader</tt> method
       to obtain a <tt>java.io.Reader</tt> for each database table being read.
       This is demonstrated in the following two Java classes.</p>
-      <pre>
+      <pre class="prettyprint lang-java">
 import java.io.*;
 import java.sql.*;
 import java.util.*;
@@ -346,7 +345,7 @@ public class MyTableReader implements TableReader
   }
 }
 </pre>
-<pre>
+<pre class="prettyprint lang-java">
 import java.sql.*;
 
 public class DemoDriver6
@@ -585,7 +584,7 @@ SELECT [DISTINCT] [table-alias.]column [[AS] alias], ...
     <p>This following example code shows how some of these properties are
     used. </p>
     
-    <pre>  ...
+    <pre class="prettyprint lang-java">  ...
 
   Properties props = new java.util.Properties();
 
