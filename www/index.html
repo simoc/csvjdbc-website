@@ -456,9 +456,10 @@ SELECT [DISTINCT] [table-alias.]column [[AS] alias], ...
       <dt>columnTypes</dt>
       <dd>type: String</dd>
       <dd>default: all Strings</dd>
-      <dd>this property defines SQL data types for tables as a comma-separated list.  When record fields are retrieved with <tt>getObject</tt> (as opposed to <tt>getString</tt>), the driver will parse the value and return a correctly typed object.
-      The order must match the column order in the file.
-      If less data types than the number of columns are provided, the last type is repeated for all trailing columns.
+      <dd>A comma-separated list defining SQL data types for columns in tables.  When
+      column values are fetched using <tt>getObject</tt> (as opposed to <tt>getString</tt>), the driver will parse the value and return a correctly typed object.
+      If fewer data types are provided than the number of columns in the table, the last
+      data type is repeated for all remaining columns.
       If <b>columnTypes</b> is set to an empty string then column types are inferred from the data.
       When working with multiple tables with different column types, define properties named <b>columnTypes.CATS</b> and <b>columnTypes.DOGS</b> to define different column types for tables <tt>CATS</tt> and <tt>DOGS</tt>.</dd>
 
@@ -522,8 +523,8 @@ SELECT [DISTINCT] [table-alias.]column [[AS] alias], ...
       <dt>headerline</dt>
       <dd>type: string</dd>
       <dd>default: None</dd>
-      <dd>Used in combination with the <b>suppressHeaders</b> property to specify a custom header line for tables.
-      With <b>suppressHeaders</b> set and <b>headerline</b> not set, all columns are named sequentially <tt>COLUMN1</tt>, <tt>COLUMN2</tt>, ...
+      <dd>Used in combination with the <b>suppressHeaders</b> property to specify a custom header line for tables.  <b>headerline</b>  contains a list of column names for tables
+      separated by the <b>separator</b> character.
       When working with multiple tables with different headers, define properties named <b>headerline.CATS</b> and <b>headerline.DOGS</b> to define different header lines for tables <tt>CATS</tt> and <tt>DOGS</tt>.</dd>
       </dd>
 
@@ -565,7 +566,9 @@ SELECT [DISTINCT] [table-alias.]column [[AS] alias], ...
       <dt>suppressHeaders</dt>
       <dd>type: boolean</dd>
       <dd>default: <tt>False</tt></dd>
-      <dd>Used to specify that the file does not contain column header information.  if <tt>False</tt>, column headers are on first line.</dd>
+      <dd>Used to specify that the file does not contain a column header with column names.
+      If <tt>True</tt> and <b>headerline</b> is not set, then columns are named sequentially <tt>COLUMN1</tt>, <tt>COLUMN2</tt>, ...
+      If <tt>False</tt>, the column header is read from the first line of the file.</dd>
 
       <dt>timestampFormat, timeFormat, dateFormat</dt>
       <dd>type: String</dd>
