@@ -100,7 +100,7 @@ available.</p>
 
 <p>The following example puts all of the above steps into practice.</p>
 
-<pre class="prettyprint lang-java">
+<pre class="prettyprint lang-java linenums">
 import java.sql.*;
 
 public class DemoDriver
@@ -146,7 +146,7 @@ public class DemoDriver
 	scrolling forwards and backwards through result sets.
 	This is demonstrated in the following example.
 	</p>
-      <pre class="prettyprint lang-java">
+      <pre class="prettyprint lang-java linenums">
 package org.relique.jdbc.csv;
 
 import java.sql.*;
@@ -193,7 +193,7 @@ public class DemoDriver2
 	table, set the database connection property <tt>indexedFiles</tt>.
 	The following example demonstrates how to do this.
 	</p>
-      <pre class="prettyprint lang-java">
+      <pre class="prettyprint lang-java linenums">
 import java.sql.*;
 import java.util.Properties;
 
@@ -243,7 +243,7 @@ public class DemoDriver3
       statement and to enable them be fetched using <tt>ResultSet.getInt</tt>,
       <tt>getDouble</tt>, <tt>getTime</tt> and other <tt>ResultSet.get</tt>
       methods.</p>
-      <pre class="prettyprint lang-java">
+      <pre class="prettyprint lang-java linenums">
 import java.sql.*;
 import java.util.Properties;
 
@@ -286,7 +286,7 @@ public class DemoDriver4
       This is demonstrated in the following example.
       </p>
 
-<pre class="prettyprint lang-java">import java.sql.*;
+<pre class="prettyprint lang-java linenums">import java.sql.*;
 import java.util.Properties;
 
 public class DemoDriver5
@@ -325,7 +325,7 @@ public class DemoDriver5
       CsvJdbc then creates an instance of this class and calls the <tt>getReader</tt> method
       to obtain a <tt>java.io.Reader</tt> for each database table being read.
       This is demonstrated in the following two Java classes.</p>
-      <pre class="prettyprint lang-java">
+      <pre class="prettyprint lang-java linenums">
 import java.io.*;
 import java.sql.*;
 import java.util.*;
@@ -337,7 +337,8 @@ public class MyTableReader implements TableReader
   public Reader getReader(Statement statement, String tableName) throws SQLException
   {
     if (tableName.equalsIgnoreCase("ELEMENT"))
-      return new StringReader("ATOMIC_NUMBER,SYMBOL,NAME\n1,H,Hydrogen\n2,He,Helium\n3,Li,Lithium\n");
+      return new StringReader("ATOMIC_NUMBER,SYMBOL,NAME\n" +
+        "1,H,Hydrogen\n2,He,Helium\n3,Li,Lithium\n");
     throw new SQLException("Table does not exist: " + tableName);
   }
 
@@ -349,7 +350,7 @@ public class MyTableReader implements TableReader
   }
 }
 </pre>
-<pre class="prettyprint lang-java">
+<pre class="prettyprint lang-java linenums">
 import java.sql.*;
 
 public class DemoDriver6
@@ -363,7 +364,8 @@ public class DemoDriver6
       Connection conn = DriverManager.getConnection("jdbc:relique:csv:class:" +
         MyTableReader.class.getName());
       Statement stmt = conn.createStatement();
-      ResultSet results = stmt.executeQuery("SELECT Atomic_Number from element where Symbol='Li'");
+      String sql = "SELECT Atomic_Number from element where Symbol='Li'";
+      ResultSet results = stmt.executeQuery(sql);
       results.next();
       System.out.println(results.getString(1));
       results.close();
@@ -588,7 +590,7 @@ SELECT [DISTINCT] [table-alias.]column [[AS] alias], ...
     <p>This following example code shows how some of these properties are
     used. </p>
     
-    <pre class="prettyprint lang-java">  ...
+    <pre class="prettyprint lang-java linenums">  ...
 
   Properties props = new java.util.Properties();
 
