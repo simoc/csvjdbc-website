@@ -61,3 +61,12 @@ a.styled-button-1 {
 	padding:4px 16px;
         text-decoration: none;
 }
+.sidebar {
+	float: left;
+	width: 190px;
+	margin: 8px;
+}
+.pagetext {
+	margin-left: 200px;
+	margin-top: 20px;
+}
