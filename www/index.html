@@ -6,8 +6,8 @@
 <link href="additions.css" rel="stylesheet" type="text/css" />
 <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=java"></script>
 
-<meta name="description" content="CsvJdbc is a open-source,read-only JDBC driver that uses Comma Separated Value (CSV) files as database tables. It is ideal for writing data import programs or analyzing log files.">
-<meta name="keywords" content="CSV, JDBC, Java, Driver, open source, Comma Separated Value">
+<meta name="description" content="CsvJdbc is a open-source,read-only JDBC driver that uses Comma Separated Value (CSV) files or DBF files as database tables. It is ideal for writing data import programs or analyzing log files.">
+<meta name="keywords" content="CSV, DBF, JDBC, Java, Driver, open source, Comma Separated Value">
 
 </head>
 
@@ -38,7 +38,7 @@
 <a href="#features">Features</a>
 <br>
 <img src="bullet.png">&nbsp;
-<a href="#requirements">Requirements</a>
+<a href="#dependencies">Dependencies</a>
 <br>
 <img src="bullet.png">&nbsp;
 <a href="#driverproperties">Driver Properties</a>
@@ -75,12 +75,12 @@ alt="SourceForge Logo" border="0" width="120" height="30"></a>
 <h3>About</h3>
 <hr noshade size="1">
 <p>CsvJdbc is a read-only JDBC driver that uses
-Comma Separated Value (CSV) files as database tables. It is ideal for writing data
+Comma Separated Value (CSV) files or DBF files as database tables. It is ideal for writing data
 import programs or analyzing log files.</p>
 
 <p>The driver enables you to access a directory
 or a ZIP file
-containing CSV files as
+containing CSV or DBF files as
 if it were a database containing tables.  As there is no real database
 management system behind the scenes, not all JDBC functionality is
 available.</p>
@@ -92,7 +92,7 @@ available.</p>
 <ul>
 <li>download <tt>csvjdbc.jar</tt> and add it to the Java CLASSPATH.</li>
 <li>load the driver class, (its full name is <tt>org.relique.jdbc.csv.CsvDriver</tt>)</li>
-<li>use <tt>DriverManager</tt> to connect to the database (the directory name or ZIP filename)</li>
+<li>use <tt>DriverManager</tt> to connect to the database (the directory or ZIP file)</li>
 <li>create a statement object</li>
 <li>use the statement object to execute an SQL SELECT query</li>
 <li>the result of the query is a <tt>ResultSet</tt></li>
@@ -434,11 +434,12 @@ SELECT [DISTINCT] [table-alias.]column [[AS] alias], ...
       For other queries, CsvJdbc holds only one record at a time in memory.
       </p>
 
-      <a name="requirements"></a> 
-      <h3>Requirements</h3>
+      <a name="dependencies"></a> 
+      <h3>Dependencies</h3>
       <hr noshade size="1">
       <p>CsvJdbc requires Java version 1.6, or later.  For reading DBF files,
-      the <a href="http://dans-dbf-lib.sourceforge.net/">DANS DBF Library</a> is required.
+      <a href="http://dans-dbf-lib.sourceforge.net/">DANS DBF Library</a> must be
+      downloaded and included in the CLASSPATH.
       </p>
 
     <a name="driverproperties"></a> 
@@ -494,7 +495,8 @@ SELECT [DISTINCT] [table-alias.]column [[AS] alias], ...
       <dt>fileExtension</dt>
       <dd>type: string</dd>
       <dd>default: <tt>".csv"</tt></dd>
-      <dd>Used to specify a different file extension.</dd>
+      <dd>Specifies file extension of the CSV files. If the extension <tt>.dbf</tt>
+      is used then files are read as dBase format database files.</dd>
 
       <dt>fileTailParts</dt>
       <dd>type: String</dd>
