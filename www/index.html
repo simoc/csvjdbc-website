@@ -6,7 +6,7 @@
 <link href="additions.css" rel="stylesheet" type="text/css" />
 <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=java"></script>
 
-<meta name="description" content="CsvJdbc is a simple open-source,read-only JDBC driver that uses Comma Separated Value (CSV) files as database tables. It is ideal for writing data import programs.">
+<meta name="description" content="CsvJdbc is a open-source,read-only JDBC driver that uses Comma Separated Value (CSV) files as database tables. It is ideal for writing data import programs or analyzing log files.">
 <meta name="keywords" content="CSV, JDBC, Java, Driver, open source, Comma Separated Value">
 
 </head>
@@ -74,7 +74,7 @@ alt="SourceForge Logo" border="0" width="120" height="30"></a>
 <a name="about"></a> 
 <h3>About</h3>
 <hr noshade size="1">
-<p>CsvJdbc is a simple read-only JDBC driver that uses
+<p>CsvJdbc is a read-only JDBC driver that uses
 Comma Separated Value (CSV) files as database tables. It is ideal for writing data
 import programs or analyzing log files.</p>
 
@@ -92,14 +92,14 @@ available.</p>
 <ul>
 <li>download <tt>csvjdbc.jar</tt> and add it to the Java CLASSPATH.</li>
 <li>load the driver class, (its full name is <tt>org.relique.jdbc.csv.CsvDriver</tt>)</li>
-<li>use <tt>DriverManager</tt> to get a connection to the database (the directory or ZIP file)</li>
+<li>use <tt>DriverManager</tt> to connect to the database (the directory name or ZIP filename)</li>
 <li>create a statement object</li>
 <li>use the statement object to execute an SQL SELECT query</li>
 <li>the result of the query is a <tt>ResultSet</tt></li>
 </ul>
 </p>
 
-<p>The following example puts all of the above steps into practice.</p>
+<p>The following example puts the above steps into practice.</p>
 
 <pre class="prettyprint lang-java linenums">
 import java.sql.*;
