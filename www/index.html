@@ -589,7 +589,16 @@ SELECT [DISTINCT] [table-alias.]column [[AS] alias], ...
       <dd>type: Boolean</dd>
       <dd>default: <tt>True</tt></dd>
       <dd>If True, leading and trailing whitespace is trimmed
-      from each column name in the header line.</dd>
+      from each column name in the header line. Column names inside quotes
+      are not trimmed.</dd>
+
+      <dt>trimValues</dt>
+      <dd>type: Boolean</dd>
+      <dd>default: <tt>False</tt></dd>
+      <dd>If True, leading and trailing whitespace is trimmed
+      from each column value in the file. Column values inside quotes
+      are not trimmed.</dd>
+
     </dl>
     </p>
     
