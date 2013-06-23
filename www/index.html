@@ -536,7 +536,9 @@ SELECT [DISTINCT] [table-alias.]column [[AS] alias], ...
       <dt>ignoreNonParseableLines</dt>
       <dd>type: Boolean</dd>
       <dd>default: <tt>False</tt></dd>
-      <dd>when True, unparseable lines will not cause exceptions but will be silently ignored.</dd>
+      <dd>when True, lines that cannot be parsed will not cause an exception but will be ignored.
+      Each ignored line is logged.
+      Call method <b>java.sql.DriverManager.setLogWriter</b> before executing a query to capture a list of ignored lines.</dd>
 
       <dt>indexedFiles</dt>
       <dd>type: Boolean</dd>
