@@ -67,7 +67,7 @@
 src="http://sourceforge.net/sflogo.php?group_id=17973&type=11"
 alt="SourceForge Logo" border="0" width="120" height="30"></a>
 <br>
-<a href="https://csvjdbc.ci.cloudbees.com/job/csvjdbc/">
+<a href="https://csvjdbc.ci.cloudbees.com">
 <img src="http://www.cloudbees.com/sites/default/files/Button-Built-on-CB-1.png" alt="built on DEV @cloud" border="0" width="139">
 </a>
 </div>
@@ -127,12 +127,8 @@ public class DemoDriver
       // Select the ID and NAME columns from sample.csv
       ResultSet results = stmt.executeQuery("SELECT ID,NAME FROM sample");
 
-      // Dump out the results
-      while (results.next())
-      {
-        System.out.println("ID= " + results.getString("ID") +
-                        "   NAME= " + results.getString("NAME"));
-      }
+      // Dump out the results using CsvJdbc helper function
+      CsvDriver.writeToCsv(results, System.out, true);
 
       // Clean up
       results.close();
