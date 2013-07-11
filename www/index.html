@@ -127,8 +127,10 @@ public class DemoDriver
       // Select the ID and NAME columns from sample.csv
       ResultSet results = stmt.executeQuery("SELECT ID,NAME FROM sample");
 
-      // Dump out the results using CsvJdbc helper function
-      CsvDriver.writeToCsv(results, System.out, true);
+      // Dump out the results to a CSV file with the same format
+      // using CsvJdbc helper function
+      boolean append = true;
+      CsvDriver.writeToCsv(results, System.out, append);
 
       // Clean up
       results.close();
