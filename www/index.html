@@ -589,8 +589,9 @@ SELECT [DISTINCT] [table-alias.]column [[AS] alias], ...
 
       <dt>timestampFormat, timeFormat, dateFormat</dt>
       <dd>type: String</dd>
-      <dd>default: <tt>YYYY-MM-DD HH:mm:ss</tt>, <tt>HH:mm:ss</tt>, <tt>YYYY-MM-DD</tt></dd>
-      <dd>Defines the format from which columns of type Timestamp, Date and Time are parsed.</dd>
+      <dd>default: <tt>yyyy-MM-dd HH:mm:ss</tt>, <tt>HH:mm:ss</tt>, <tt>yyyy-MM-dd</tt></dd>
+      <dd>Defines the format from which columns of type Timestamp, Time and Date are parsed.
+      See the Java <a href="http://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html">SimpleDateFormat</a> documentation for timestamp patterns.</dd>
 
       <dt>timeZoneName</dt>
       <dd>type: String</dd>
