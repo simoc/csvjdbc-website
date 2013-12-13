@@ -565,6 +565,12 @@ SELECT [DISTINCT] [table-alias.]column [[AS] alias], ...
       <dd>default: <tt>SQL</tt></dd>
       <dd>Defines how a quote character is interpreted inside a quoted value.  When <tt>SQL</tt>, a pair of quote characters together is interpreted as a single quote character.  When <tt>C</tt>, a backslash followed by a quote character is interpreted as a single quote character.</dd>
 
+      <dt>locale</dt>
+      <dd>type: String</dd>
+      <dd>default: Java default</dd>
+      <dd>Defines language tag of locale used when parsing timestamps.  This is important when parsing names such as <b>December</b> which vary depending on the locale.
+      See the Java <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Locale.html">Locale</a> documentation for methods to generate language tags.</dd>
+
       <dt>separator</dt>
       <dd>type: character</dd>
       <dd>default: <tt>','</tt></dd>
