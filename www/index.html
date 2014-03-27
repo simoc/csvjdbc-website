@@ -555,6 +555,11 @@ SELECT [DISTINCT] [table-alias.]column [[AS] alias], ...
       <dd>default: <tt>False</tt></dd>
       <dd>when True, all files with a filename matching the table name plus the regular expression given in property <b>fileTailPattern</b> are read as if they were a single file.</dd>
 
+      <dt>isHeaderFixedWidth</dt>
+      <dd>type: Boolean</dd>
+      <dd>default: <tt>True</tt></dd>
+      <dd>Used in combination with the <b>fixedWidths</b> property when reading fixed width files to specify whether the header line containing the column names is also fixed width.  If False, column names are separated by the <b>separator</b> character.</dd>
+
       <dt>quotechar</dt>
       <dd>type: Character</dd>
       <dd>default: <tt>"</tt></dd>
