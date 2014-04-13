@@ -660,12 +660,10 @@ SELECT [DISTINCT] [table-alias.]column [[AS] alias], ...
       <hr noshade size="1">
       <p>To checkout and build the latest CsvJdbc source code, use the
       following commands (<a href="http://git-scm.com/">git</a> and
-      <a href="http://ant.apache.org">ant</a> must first be installed).</p>
-<pre>git clone git://git.code.sf.net/p/csvjdbc/code csvjdbc-code
-cd csvjdbc-code
-cd build
-ant jar
-cd ..
+      <a href="http://maven.apache.org/">Maven</a> must first be installed).</p>
+<pre>git clone git://git.code.sf.net/p/csvjdbc/code csvjdbc
+cd csvjdbc
+mvn install
 cd target
 dir csvjdbc*.jar
 </pre>
