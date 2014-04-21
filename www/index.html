@@ -4,7 +4,6 @@
 <title>CsvJdbc - a JDBC driver for CSV files</title>
 <link rel="Shortcut Icon" href="favicon.png">
 <link href="additions.css" rel="stylesheet" type="text/css" />
-<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=java"></script>
 
 <meta name="description" content="CsvJdbc is a open-source,read-only JDBC driver that uses Comma Separated Value (CSV) files or DBF files as database tables. It is ideal for writing data import programs or analyzing log files.">
 <meta name="keywords" content="CSV, DBF, JDBC, Java, Driver, open source, Comma Separated Value">
@@ -13,97 +12,56 @@
 
 <body bgcolor="#FFFFFF">
 
-<table border="0" cellpadding="10" cellspacing="0">
-<tr>
-<td>
+<div class="logo">
 <img src="CsvJdbcLogo.png" width="182" height="108" alt="The CsvJdbc Logo">
-</td>
-<td>
+</div>
+<div class="headline">
 <h1>CsvJdbc</h1>
 <p class="tagline">a Java database driver for reading comma-separated-value files</p>
-</td>
-</tr>
-</table>
+</div>
 
-<div class="sidebar">
-<br>
-<br>
-<img src="bullet.png" alt="o">&nbsp;
-<a href="#about">About</a>
-<br>
-<img src="bullet.png" alt="o">&nbsp;
-<a href="#usage">Usage</a>
-<br>
-<img src="bullet.png" alt="o">&nbsp;
-<a href="#features">Features</a>
-<br>
-<img src="bullet.png" alt="o">&nbsp;
-<a href="#dependencies">Dependencies</a>
-<br>
-<img src="bullet.png" alt="o">&nbsp;
-<a href="#driverproperties">Driver Properties</a>
-<br>
-<img src="bullet.png" alt="o">&nbsp;
-<a href="http://sourceforge.net/p/csvjdbc/_list/tickets">Bug Tracker</a>
-<br>
-<img src="bullet.png" alt="o">&nbsp;
-<a href="http://sourceforge.net/p/csvjdbc/code/ci/master/tree/">Git Repository</a>
-<br>
-<img src="bullet.png" alt="o">&nbsp;
-<a href="#building">Building From Source</a>
-<br>
-<img src="bullet.png" alt="o">&nbsp;
-<a href="#maven">Building With Maven</a>
-<br>
-<img src="bullet.png" alt="o">&nbsp;
-<a href="#license">License</a>
-<br>
-<br>
-<br>
-<a class="styled-button-1" href="http://sourceforge.net/projects/csvjdbc/files/latest/download">Download</a>
-<br>
-<br>
-<a href="http://sourceforge.net/projects/csvjdbc/"><img
-src="http://sourceforge.net/sflogo.php?group_id=17973&type=11"
-alt="SourceForge Logo" border="0" width="120" height="30"></a>
-<br>
-<a href="https://csvjdbc.ci.cloudbees.com">
-<img src="http://www.cloudbees.com/sites/default/files/Button-Built-on-CB-1.png" alt="built on DEV @cloud" border="0" width="139">
-</a>
+<div class="toolbar">
+<div class="toollinks">
+<a class="toollink" href="index.html">Home</a>
+<a class="toollink" href="http://sourceforge.net/projects/csvjdbc/files/latest/download">Download</a>
+<a class="toollink" href="doc.html">Documentation</a>
+<a class="toollink" href="develop.html">Develop</a>
+<a class="toollink" href="http://sourceforge.net/p/csvjdbc/bugs/">Bugs</a>
+</div>
 </div>
 
 <div class="pagetext">
-<a name="about"></a> 
-<h3>About</h3>
+<!-- same for every page until here -->
+
+<h3>Introduction</h3>
 <hr noshade size="1">
 <p>CsvJdbc is a read-only JDBC driver that uses
 Comma Separated Value (CSV) files or DBF files as database tables. It is ideal for writing data
 import programs or analyzing log files.</p>
 
-<p>The driver enables you to access a directory
+<p>The driver enables a directory
 or a ZIP file
-containing CSV or DBF files as
-if it were a database containing tables.  As there is no real database
+containing CSV or DBF files to be accessed as though
+it were a database containing tables.  However, as there is no real database
 management system behind the scenes, not all JDBC functionality is
 available.</p>
 
-<a name="usage"></a> 
 <h3>Usage</h3>
 <hr noshade size="1">
 <p>The CsvJdbc driver is used just like any other JDBC driver:
-<ul>
+<ol>
 <li>download <tt>csvjdbc.jar</tt> and add it to the Java CLASSPATH.</li>
 <li>load the driver class, (its full name is <tt>org.relique.jdbc.csv.CsvDriver</tt>)</li>
 <li>use <tt>DriverManager</tt> to connect to the database (the directory or ZIP file)</li>
 <li>create a statement object</li>
 <li>use the statement object to execute an SQL SELECT query</li>
 <li>the result of the query is a <tt>ResultSet</tt></li>
-</ul>
+</ol>
 </p>
 
 <p>The following example puts the above steps into practice.</p>
 
-<pre class="prettyprint lang-java linenums">
+<pre><code>
 import java.sql.*;
 
 public class DemoDriver
@@ -142,569 +100,23 @@ public class DemoDriver
       e.printStackTrace();
     }
   }
-}</pre>
-        <p>Like other databases, creating a scrollable statement enables
-	scrolling forwards and backwards through result sets.
-	This is demonstrated in the following example.
-	</p>
-      <pre class="prettyprint lang-java linenums">
-package org.relique.jdbc.csv;
+}</code></pre>
 
-import java.sql.*;
+<!-- same for every page from here -->
+<p class="lastmodified">
+Updated: 21 April 2014
+</p>
 
-public class DemoDriver2
-{
-  public static void main(String[] args)
-  {
-    try
-    {
-      Class.forName("org.relique.jdbc.csv.CsvDriver");
-      Connection conn = DriverManager.getConnection("jdbc:relique:csv:" + args[0]);
-
-      // create a scrollable Statement so we can move forwards and backwards
-      // through ResultSets
-      Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,
-        ResultSet.CONCUR_READ_ONLY);
-      ResultSet results = stmt.executeQuery("SELECT ID,NAME FROM sample");
-
-      // dump out the last record in the result set, then the first record
-      if (results.last())
-      {
-    	System.out.println("ID= " + results.getString("ID") +
-              "   NAME= " + results.getString("NAME"));
-    	if (results.first())
-    	{
-    	  System.out.println("ID= " + results.getString("ID") +
-              "   NAME= " + results.getString("NAME"));
-    	}
-      }
-
-      // clean up
-      results.close();
-      stmt.close();
-      conn.close();
-    }
-    catch(Exception e)
-    {
-      e.printStackTrace();
-    }
-  }
-}</pre>
-        <p>To read several files (for example, daily log files) as a single
-	table, set the database connection property <tt>indexedFiles</tt>.
-	The following example demonstrates how to do this.
-	</p>
-      <pre class="prettyprint lang-java linenums">
-import java.sql.*;
-import java.util.Properties;
-
-public class DemoDriver3
-{
-  public static void main(String[] args)
-  {
-    try
-    {
-      Class.forName("org.relique.jdbc.csv.CsvDriver");
-      Properties props = new Properties();
-      props.put("fileExtension", ".txt");
-      props.put("indexedFiles", "true");
-      // We want to read test-001-20081112.txt, test-002-20081113.txt and many
-      // other files matching this pattern.
-      props.put("fileTailPattern", "-(\\d+)-(\\d+)");
-      // Make the two groups in the regular expression available as
-      // additional table columns.
-      props.put("fileTailParts", "Seqnr,Logdatum");
-      Connection conn = DriverManager.getConnection("jdbc:relique:csv:" +
-        args[0], props);
-      Statement stmt = conn.createStatement();
-      ResultSet results = stmt.executeQuery("SELECT Datum, Station, " +
-        "Seqnr, Logdatum FROM test");
-      ResultSetMetaData meta = results.getMetaData();
-      while (results.next())
-      {
-        for (int i = 0; i &lt; meta.getColumnCount(); i++)
-        {
-          System.out.println(meta.getColumnName(i + 1) + " " +
-            results.getString(i + 1));
-        }
-      }
-      results.close();
-      stmt.close();
-      conn.close();
-    }
-    catch(Exception e)
-    {
-      e.printStackTrace();
-    }
-  }
-}</pre>
-      <p>Set the database connection property <tt>columnTypes</tt> to enable
-      expressions containing numeric, time and date data types
-      to be used in SELECT
-      statements and to enable column values to be fetched using <tt>ResultSet.getInt</tt>,
-      <tt>getDouble</tt>, <tt>getTime</tt> and other <tt>ResultSet.get</tt>
-      methods.</p>
-      <pre class="prettyprint lang-java linenums">
-import java.sql.*;
-import java.util.Properties;
-
-public class DemoDriver4
-{
-  public static void main(String[] args)
-  {
-    try
-    {
-      Class.forName("org.relique.jdbc.csv.CsvDriver");
-      Properties props = new Properties();
-      // Define column names and column data types here.
-      props.put("suppressHeaders", "true");
-      props.put("headerline", "ID,ANGLE,MEASUREDATE");
-      props.put("columnTypes", "Int,Double,Date");
-      Connection conn = DriverManager.getConnection("jdbc:relique:csv:" +
-        args[0], props);
-      Statement stmt = conn.createStatement();
-      ResultSet results = stmt.executeQuery("SELECT Id, Angle * 180 / 3.1415 as A, " +
-        "MeasureDate FROM t1 where Id &gt; 1001");
-      while (results.next())
-      {
-    	  // Fetch column values with methods that match the column data types.
-          System.out.println(results.getInt(1));
-          System.out.println(results.getDouble(2));
-          System.out.println(results.getDate(3));
-      }
-      results.close();
-      stmt.close();
-      conn.close();
-    }
-    catch(Exception e)
-    {
-      e.printStackTrace();
-    }
-  }
-}</pre>
-      <p>To read the compressed files inside a ZIP file as database tables, make
-      a database connection to the ZIP file using the JDBC connection string format <tt>jdbc:relique:csv:zip:filename.zip</tt>.
-      This is demonstrated in the following example.
-      </p>
-
-<pre class="prettyprint lang-java linenums">import java.sql.*;
-import java.util.Properties;
-
-public class DemoDriver5
-{
-  public static void main(String[] args)
-  {
-    try
-    {
-      Class.forName("org.relique.jdbc.csv.CsvDriver");
-      String zipFilename = args[0];
-      Connection conn = DriverManager.getConnection("jdbc:relique:csv:zip:" +
-        zipFilename);
-      Statement stmt = conn.createStatement();
-      // Read from file mytable.csv inside the ZIP file
-      ResultSet results = stmt.executeQuery("SELECT * FROM mytable");
-      while (results.next())
-      {
-          System.out.println(results.getString("COUNTRY"));
-      }
-      results.close();
-      stmt.close();
-      conn.close();
-    }
-    catch(Exception e)
-    {
-      e.printStackTrace();
-    }
-  }
-}
-</pre>
-      <p>To read data that is either held inside the Java application (for
-      example, in a JAR file) or accessed remotely (for example, using
-      HTTP requests), create
-      a Java class that implements the interface <tt>org.relique.io.TableReader</tt>
-      and give this class name in the connection URL.
-      CsvJdbc then creates an instance of this class and calls the <tt>getReader</tt> method
-      to obtain a <tt>java.io.Reader</tt> for each database table being read.
-      This is demonstrated in the following two Java classes.</p>
-      <pre class="prettyprint lang-java linenums">
-import java.io.*;
-import java.sql.*;
-import java.util.*;
-
-import org.relique.io.TableReader;
-
-public class MyTableReader implements TableReader
-{
-  public Reader getReader(Statement statement, String tableName) throws SQLException
-  {
-    if (tableName.equalsIgnoreCase("ELEMENT"))
-      return new StringReader("ATOMIC_NUMBER,SYMBOL,NAME\n" +
-        "1,H,Hydrogen\n2,He,Helium\n3,Li,Lithium\n");
-    throw new SQLException("Table does not exist: " + tableName);
-  }
-
-  public List getTableNames(Connection connection) throws SQLException
-  {
-    Vector v = new Vector();
-    v.add("ELEMENT");
-    return v;
-  }
-}
-</pre>
-<pre class="prettyprint lang-java linenums">
-import java.sql.*;
-
-public class DemoDriver6
-{
-  public static void main(String []args)
-  {
-    try
-    {
-      Class.forName("org.relique.jdbc.csv.CsvDriver");
-      // Give name of Java class that provides database tables.
-      Connection conn = DriverManager.getConnection("jdbc:relique:csv:class:" +
-        MyTableReader.class.getName());
-      Statement stmt = conn.createStatement();
-      String sql = "SELECT Atomic_Number from element where Symbol='Li'";
-      ResultSet results = stmt.executeQuery(sql);
-      results.next();
-      System.out.println(results.getString(1));
-      results.close();
-      stmt.close();
-      conn.close();
-    }
-    catch (Exception e)
-    {
-      e.printStackTrace();
-    }
-  }
-}</pre>
-      <p></p>
-
-      <a name="features"></a> 
-      <h3>Features</h3>
-      <hr noshade size="1">
-      <p>CsvJdbc accepts all types of CSV files defined by
-      <a href="http://tools.ietf.org/html/rfc4180">RFC 4180</a>.
-      </p>
-      <p>CsvJdbc accepts only SQL SELECT queries from a single table and does not support INSERT, UPDATE, DELETE or CREATE statements.
-      Joins between tables in SQL SELECT queries are not supported.</p>
-      <p>SQL SELECT queries must be of the following format.</p>
-      <pre>
-SELECT [DISTINCT] [table-alias.]column [[AS] alias], ...
-  FROM table [[AS] table-alias]
-  WHERE [NOT] condition [AND | OR condition] ...
-  GROUP BY column ... [HAVING condition ...]
-  ORDER BY column [ASC | DESC] ...
-  LIMIT n [OFFSET n]</pre>
-      <p>Each column is either a named column,
-      <tt>*</tt>,
-      a constant value,
-      <tt>NULL</tt>,
-      <tt>CURRENT_DATE</tt>,
-      <tt>CURRENT_TIME</tt>,
-      or an expression including functions
-      <tt>DAYOFMONTH</tt>,
-      <tt>HOUROFDAY</tt>,
-      <tt>LENGTH</tt>,
-      <tt>LOWER</tt>,
-      <tt>MINUTE</tt>,
-      <tt>MONTH</tt>,
-      <tt>NULLIF</tt>,
-      <tt>ROUND</tt>,
-      <tt>SECOND</tt>,
-      <tt>TRIM</tt>,
-      <tt>UPPER</tt>,
-      <tt>YEAR</tt>,
-      aggregate functions
-      <tt>AVG</tt>, <tt>COUNT</tt>,
-      <tt>MAX</tt>, <tt>MIN</tt>,
-      <tt>SUM</tt>
-      and operations <tt>+</tt>, <tt>-</tt>,
-      <tt>/</tt>, <tt>*</tt>, <tt>%</tt> and parentheses.
-      Supported comparisons in the optional WHERE clause are
-      <tt>&lt;</tt>,
-      <tt>&gt;</tt>,
-      <tt>&lt;=</tt>,
-      <tt>&gt;=</tt>,
-      <tt>=</tt>,
-      <tt>!=</tt>,
-      <tt>&lt;&gt;</tt>,
-      <tt>NOT</tt>,
-      <tt>BETWEEN</tt>,
-      <tt>LIKE</tt>,
-      <tt>IS NULL</tt>,
-      <tt>IN</tt>.
-      Use double quotes around table names or column names contaning spaces
-      or other special characters.
-      </p>
-      <p>
-      For queries containing <tt>ORDER BY</tt>, all records are read into memory and sorted.
-      For queries containing <tt>GROUP BY</tt> plus an aggregate function, all records are read into memory and grouped.
-      For queries that produce a scrollable result set, all records up to the furthest accessed record are held into memory.
-      For other queries, CsvJdbc holds only one record at a time in memory.
-      </p>
-
-      <a name="dependencies"></a> 
-      <h3>Dependencies</h3>
-      <hr noshade size="1">
-      <p>CsvJdbc requires Java version 1.6, or later.  For reading DBF files,
-      <a href="http://dans-dbf-lib.sourceforge.net/">DANS DBF Library</a> must be
-      downloaded and included in the CLASSPATH.
-      </p>
-
-    <a name="driverproperties"></a> 
-    <h3>Driver Properties</h3>
-    <hr size="1" noshade>
-    <p>The driver also supports a number of parameters that change the default behaviour of the driver.</p>
-    <p>These properties are:</p>
-    <p>
-    <dl>
-      <dt>charset</dt>
-      <dd>type: String</dd>
-      <dd>default: Java default</dd>
-      <dd>Defines the character set name of the files being read,
-      such as <tt>UTF-16</tt>.
-      See the Java <a href="http://docs.oracle.com/javase/7/docs/api/java/nio/charset/Charset.html">Charset</a> documentation for a list of available
-      character set names.</dd>
-
-      <dt>columnTypes</dt>
-      <dd>type: String</dd>
-      <dd>default: all Strings</dd>
-      <dd>A comma-separated list defining SQL data types for columns in tables.  When
-      column values are fetched using <tt>getObject</tt> (as opposed to <tt>getString</tt>), the driver will parse the value and return a correctly typed object.
-      If fewer data types are provided than the number of columns in the table, the last
-      data type is repeated for all remaining columns.
-      If <b>columnTypes</b> is set to an empty string then column types are inferred from the data.
-      When working with multiple tables with different column types, define properties named <b>columnTypes.CATS</b> and <b>columnTypes.DOGS</b> to define different column types for tables <tt>CATS</tt> and <tt>DOGS</tt>.</dd>
-
-      <dt>commentChar</dt>
-      <dd>type: Character</dd>
-      <dd>default: </dd>
-      <dd>Lines before the header starting with this character are ignored.  After the header has been read, all lines are interpreted as data.</dd>
-
-      <dt>cryptoFilterClassName</dt>
-      <dd>type: Class</dd>
-      <dd>default: <tt>null</tt></dd>
-      <dd>The full class name of a Java class that decrypts the file being read.  The class must implement interface <tt>org.relique.io.CryptoFilter</tt>.  The class <tt>org.relique.io.XORFilter</tt> included in CsvJdbc implements an XOR encryption filter.</dd>
-
-      <dt>cryptoFilterParameterTypes</dt>
-      <dd>type: String</dd>
-      <dd>default: <tt>String</tt></dd>
-      <dd>Comma-separated list of data types to pass to the constructor of the decryption class set in property <b>cryptoFilterClassName</b>.</dd>
-
-      <dt>cryptoFilterParameters</dt>
-      <dd>type: String</dd>
-      <dd>default: </dd>
-      <dd>Comma-separated list of values to pass to the constructor of the decryption class set in property <b>cryptoFilterClassName</b>.</dd>
-
-      <dt>defectiveHeaders</dt>
-      <dd>type: Boolean</dd>
-      <dd>default: <tt>False</tt></dd>
-      <dd>in case a column name is the emtpy string, replace it with COLUMNx, where x is the ordinal identifying the column.</dd>
-
-      <dt>fileExtension</dt>
-      <dd>type: string</dd>
-      <dd>default: <tt>".csv"</tt></dd>
-      <dd>Specifies file extension of the CSV files. If the extension <tt>.dbf</tt>
-      is used then files are read as dBase format database files.</dd>
-
-      <dt>fileTailParts</dt>
-      <dd>type: String</dd>
-      <dd>default: <tt>null</tt></dd>
-      <dd>Comma-separated list of column names for the additional columns generated by regular expression groups in the property <b>fileTailPattern</b>.</dd>
-
-      <dt>fileTailPattern</dt>
-      <dd>type: String</dd>
-      <dd>default: <tt>null</tt></dd>
-      <dd>Regular expression for matching filenames when property <b>indexedFiles</b> is True.  If the regular expression contains groups (surrounded by parentheses) then the value of each group in matching filenames is added as an extra column to each line read from that file.  For example, when querying table <tt>test</tt>, the regular expression <tt>-(\d+)-(\d+)</tt> will match files <tt>test-001-20081112.csv</tt> and <tt>test-002-20081113.csv</tt>.  The column values <tt>001</tt> and <tt>20081112</tt> are added to each line read from the first file and <tt>002</tt> and <tt>20081113</tt> are added to each line read from the second file.</dd>
-
-      <dt>fileTailPrepend</dt>
-      <dd>type: Boolean</dd>
-      <dd>default: <tt>False</tt></dd>
-      <dd>when True, columns generated by regular expression groups in the <b>fileTailPattern</b> property are prepended to the start of each line.  When False, the generated columns are appended after the columns read for each line.</dd>
-
-      <dt>fixedWidths</dt>
-      <dd>type: String</dd>
-      <dd>default: <tt>null</tt></dd>
-      <dd>Defines character position ranges for each column in a fixed width file.
-      When set, column values are extracted from these ranges in each line instead of
-      separating the line by delimiters.
-      Each column is a pair of character positions separated by a minus sign,
-      or a single character for columns with only a single character.
-      The position of the first character on each line is 1.
-      Character position ranges are separated by commas.
-      For example, <b>1,2-9,16-19</b>.</dd>
-
-      <dt>headerline</dt>
-      <dd>type: string</dd>
-      <dd>default: None</dd>
-      <dd>Used in combination with the <b>suppressHeaders</b> property to specify a custom header line for tables.  <b>headerline</b>  contains a list of column names for tables
-      separated by the <b>separator</b> character.
-      When working with multiple tables with different headers, define properties named <b>headerline.CATS</b> and <b>headerline.DOGS</b> to define different header lines for tables <tt>CATS</tt> and <tt>DOGS</tt>.</dd>
-      </dd>
-
-      <dt>ignoreNonParseableLines</dt>
-      <dd>type: Boolean</dd>
-      <dd>default: <tt>False</tt></dd>
-      <dd>when True, lines that cannot be parsed will not cause an exception but will be ignored.
-      Each ignored line is logged.
-      Call method <b>java.sql.DriverManager.setLogWriter</b> before executing a query to capture a list of ignored lines.</dd>
-
-      <dt>indexedFiles</dt>
-      <dd>type: Boolean</dd>
-      <dd>default: <tt>False</tt></dd>
-      <dd>when True, all files with a filename matching the table name plus the regular expression given in property <b>fileTailPattern</b> are read as if they were a single file.</dd>
-
-      <dt>isHeaderFixedWidth</dt>
-      <dd>type: Boolean</dd>
-      <dd>default: <tt>True</tt></dd>
-      <dd>Used in combination with the <b>fixedWidths</b> property when reading fixed width files to specify whether the header line containing the column names is also fixed width.  If False, column names are separated by the <b>separator</b> character.</dd>
-
-      <dt>quotechar</dt>
-      <dd>type: Character</dd>
-      <dd>default: <tt>"</tt></dd>
-      <dd>Defines quote character.  Column values surrounded with the quote character are parsed with the quote characters removed. This is useful when values contain the separator character or line breaks.  Only one character is allowed.</dd>
-
-      <dt>quoteStyle</dt>
-      <dd>type: String</dd>
-      <dd>default: <tt>SQL</tt></dd>
-      <dd>Defines how a quote character is interpreted inside a quoted value.  When <tt>SQL</tt>, a pair of quote characters together is interpreted as a single quote character.  When <tt>C</tt>, a backslash followed by a quote character is interpreted as a single quote character.</dd>
-
-      <dt>locale</dt>
-      <dd>type: String</dd>
-      <dd>default: Java default</dd>
-      <dd>Defines locale to use when parsing timestamps.
-      This is important when parsing words such as <b>December</b> which vary depending on the locale.  Call method
-      <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Locale.html#toString()">Locale.toString()</a> to convert a locale to a string.</dd>
-
-      <dt>separator</dt>
-      <dd>type: character</dd>
-      <dd>default: <tt>','</tt></dd>
-      <dd>Used to specify a different column separator.</dd>
-
-      <dt>skipLeadingLines</dt>
-      <dd>type: Integer</dd>
-      <dd>default: <tt>0</tt></dd>
-      <dd>after opening a file, skip this many lines before starting to interpret the contents.</dd>
-
-      <dt>skipLeadingDataLines</dt>
-      <dd>type: Integer</dd>
-      <dd>default: <tt>0</tt></dd>
-      <dd>after reading the header from a file, skip this many lines before starting to interpret lines as records.</dd>
-
-      <dt>suppressHeaders</dt>
-      <dd>type: boolean</dd>
-      <dd>default: <tt>False</tt></dd>
-      <dd>Used to specify that the file does not contain a column header with column names.
-      If <tt>True</tt> and <b>headerline</b> is not set, then columns are named sequentially <tt>COLUMN1</tt>, <tt>COLUMN2</tt>, ...
-      If <tt>False</tt>, the column header is read from the first line of the file.</dd>
-
-      <dt>timestampFormat, timeFormat, dateFormat</dt>
-      <dd>type: String</dd>
-      <dd>default: <tt>yyyy-MM-dd HH:mm:ss</tt>, <tt>HH:mm:ss</tt>, <tt>yyyy-MM-dd</tt></dd>
-      <dd>Defines the format from which columns of type Timestamp, Time and Date are parsed.
-      See the Java <a href="http://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html">SimpleDateFormat</a> documentation for date and timestamp patterns.</dd>
-
-      <dt>timeZoneName</dt>
-      <dd>type: String</dd>
-      <dd>default: <tt>UTC</tt></dd>
-      <dd>The time zone of Timestamp columns. To use the time zone of the
-      computer, set this to the value returned
-      by the method <tt>java.util.TimeZone.getDefault().getID()</tt>.</dd>
-
-      <dt>trimHeaders</dt>
-      <dd>type: Boolean</dd>
-      <dd>default: <tt>True</tt></dd>
-      <dd>If True, leading and trailing whitespace is trimmed
-      from each column name in the header line. Column names inside quotes
-      are not trimmed.</dd>
-
-      <dt>trimValues</dt>
-      <dd>type: Boolean</dd>
-      <dd>default: <tt>False</tt></dd>
-      <dd>If True, leading and trailing whitespace is trimmed
-      from each column value in the file. Column values inside quotes
-      are not trimmed.</dd>
-
-    </dl>
-    </p>
-    
-    <p>This following example code shows how some of these properties are
-    used. </p>
-    
-    <pre class="prettyprint lang-java linenums">  ...
-
-  Properties props = new java.util.Properties();
-
-  props.put("separator", "|");              // separator is a bar
-  props.put("suppressHeaders", "true");     // first line contains data
-  props.put("fileExtension", ".txt");       // file extension is .txt
-  props.put("timeZoneName", "America/Los_Angeles"); // timestamps are Los Angeles time
-
-  Connection conn1 = Drivermanager.getConnection("jdbc:relique:csv:" + args[0], props);
-
-  ...
-
-  // Connections using a URL string containing both directory and
-  // properties are also accepted (class java.net.URLEncoder encodes
-  // property values containing special characters).
-  Connection conn2 = DriverManager.getConnection("jdbc:relique:csv:" + args[0] + "?" +
-    "separator=" + URLEncoder.encode("|", "UTF-8") + "&amp;" +
-    "quotechar=" + URLEncoder.encode("'", "UTF-8") + "&amp;" +
-    "fileExtension=.txt" + "&amp;" +
-    "suppressHeaders=true");
-    </pre>
-
-      <a name="building"></a> 
-      <h3>Building From Source</h3>
-      <hr noshade size="1">
-      <p>To checkout and build the latest CsvJdbc source code, use the
-      following commands (<a href="http://git-scm.com/">git</a> and
-      <a href="http://maven.apache.org/">Maven</a> must first be installed).</p>
-<pre>git clone git://git.code.sf.net/p/csvjdbc/code csvjdbc
-cd csvjdbc
-mvn install
-cd target
-dir csvjdbc*.jar
-</pre>
-
-      <a name="maven"></a> 
-      <h3>Building With Maven</h3>
-      <hr noshade size="1">
-      <p>To include CsvJdbc in a
-      <a href="http://maven.apache.org/">Maven</a> project,
-      add the following lines to the <tt>pom.xml</tt> file.</p>
-<pre>
-&lt;project&gt;
- ...
-  &lt;repositories&gt;
-    &lt;repository&gt;
-      &lt;id&gt;SourceForge&lt;/id&gt;
-      &lt;url&gt;http://csvjdbc.sourceforge.net/maven2&lt;/url&gt;
-    &lt;/repository&gt;
-  &lt;/repositories&gt;
-
-  &lt;dependencies&gt;
-    &lt;dependency&gt;
-      &lt;groupId&gt;net.sourceforge.csvjdbc&lt;/groupId&gt;
-      &lt;artifactId&gt;csvjdbc&lt;/artifactId&gt;
-      &lt;version&gt;1.0.20&lt;/version&gt;
-    &lt;/dependency&gt;
-  &lt;/dependencies&gt;
-</pre>
-
-
-      <a name="license"></a> 
-      <h3>License</h3>
-      <hr noshade size="1">
-      <p>CsvJdbc is released under the <a href="http://www.gnu.org/licenses/lgpl.html">GNU Lesser General Public License (LGPL)</a>.</p>
+<div class="otherlogos">
+<a href="https://csvjdbc.ci.cloudbees.com">
+<img src="http://www.cloudbees.com/sites/default/files/Button-Built-on-CB-1.png" alt="built on DEV @cloud" border="0">
+</a>
+<a href="http://sourceforge.net/projects/csvjdbc/"><img
+src="http://sourceforge.net/sflogo.php?group_id=17973&type=14"
+alt="SourceForge Logo" border="0"></a>
+</div>
 
 </div>
 
-<p></p>
-<p class="lastmodified">
-Last modified: $Id$
-</p>
 </body>
 </html>

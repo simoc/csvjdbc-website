@@ -1,18 +1,24 @@
 body {
     font-family: verdana, geneva, arial, sans-serif;
-    font-size: 13px;
+    font-size: 14px;
     margin: 0;
     padding: 0;
 }
-tt { font-family: Courier New, Fixed, monospace; 
-     font-weight: bold
+tt {
+	font-family: Courier New, Fixed, monospace; 
+	font-weight: bold;
 } 
-pre { display: block;
-            overflow: auto;
-    font-size: 11px;
+pre {
+	font-size: 12px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	padding: 10px;
+	width: 80%;
+	min-width: 600px;
+	word-wrap: normal;
 }
 h1 {
-    font-size: 400%;
+    font-size: 300%;
     margin: 0;
 }
 h3 {
@@ -40,33 +46,49 @@ p.tagline {
     color: #666;
 }
 p.lastmodified {
-    font-style: italic;
-    font-size: 12px;
-    color: #666;
-    padding-left: 8px;
+	font-style: italic;
+	color: #666;
 }
-a.styled-button-1 {
-	-webkit-box-shadow:rgba(0,0,0,0.2) 0 1px 0 0;
-	-moz-box-shadow:rgba(0,0,0,0.2) 0 1px 0 0;
-	box-shadow:rgba(0,0,0,0.2) 0 1px 0 0;
-	color: black;
-	background-color:#ff9126;
-	border-radius:5px;
-	-moz-border-radius:5px;
-	-webkit-border-radius:5px;
-	border:none;
-	font-size:16px;
-	font-weight:700;
-	height:32px;
-	padding:4px 16px;
-        text-decoration: none;
-}
-.sidebar {
+.logo {
 	float: left;
-	width: 190px;
-	margin: 8px;
+	width: 200px;
+	height: 116px;
+}
+.headline {
+	margin-left: 200px;
+	margin-top: 6px;
 }
 .pagetext {
-	margin-left: 200px;
+        margin-left: 100px;
 	margin-top: 20px;
+	margin-top: 6px;
+}
+.toolbar {
+	clear: left;
+	background-color:#ff9126;
+	padding:16px;
+}
+.toollinks {
+	width: 420px ;
+	margin-left: auto ;
+	margin-right: auto ;
+}
+a.toollink {
+	padding-left:10px;
+	padding-right:10px;
+	padding-top:6px;
+	padding-bottom:6px;
+	color: black;
+}
+.toollinks a:hover {
+	color:#ff9126;
+	background-color:black;
+}
+.otherlogos img {
+	border: 0px;
+	padding: 2px;
+	margin: 3px;
+	display: inline-block;
+	vertical-align: middle;
+	bottom:0px;
 }
