@@ -423,7 +423,7 @@ public class DemoDriver6
       <dd>type: string</dd>
       <dd>default: None</dd>
       <dd>Used in combination with the <b>suppressHeaders</b> property to specify a custom header line for tables.  <b>headerline</b>  contains a list of column names for tables
-      separated by the <b>separator</b> character.
+      separated by the <b>separator</b>.
       When working with multiple tables with different headers, define properties named <b>headerline.CATS</b> and <b>headerline.DOGS</b> to define different header lines for tables <tt>CATS</tt> and <tt>DOGS</tt>.</dd>
       </dd>
 
@@ -442,12 +442,12 @@ public class DemoDriver6
       <dt>isHeaderFixedWidth</dt>
       <dd>type: Boolean</dd>
       <dd>default: <tt>True</tt></dd>
-      <dd>Used in combination with the <b>fixedWidths</b> property when reading fixed width files to specify whether the header line containing the column names is also fixed width.  If False, column names are separated by the <b>separator</b> character.</dd>
+      <dd>Used in combination with the <b>fixedWidths</b> property when reading fixed width files to specify whether the header line containing the column names is also fixed width.  If False, column names are separated by the <b>separator</b>.</dd>
 
       <dt>quotechar</dt>
       <dd>type: Character</dd>
       <dd>default: <tt>"</tt></dd>
-      <dd>Defines quote character.  Column values surrounded with the quote character are parsed with the quote characters removed. This is useful when values contain the separator character or line breaks.  Only one character is allowed.</dd>
+      <dd>Defines quote character.  Column values surrounded with the quote character are parsed with the quote characters removed. This is useful when values contain the <b>separator</b> or line breaks.  Only one character is allowed.</dd>
 
       <dt>quoteStyle</dt>
       <dd>type: String</dd>
@@ -462,9 +462,9 @@ public class DemoDriver6
       <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Locale.html#toString()">Locale.toString()</a> to convert a locale to a string.</dd>
 
       <dt>separator</dt>
-      <dd>type: character</dd>
-      <dd>default: <tt>','</tt></dd>
-      <dd>Used to specify a different column separator.</dd>
+      <dd>type: String</dd>
+      <dd>default: <tt>","</tt></dd>
+      <dd>Defines column separator. A separator longer than one character is permitted.</dd>
 
       <dt>skipLeadingLines</dt>
       <dd>type: Integer</dd>
