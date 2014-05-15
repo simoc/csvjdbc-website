@@ -362,9 +362,9 @@ public class DemoDriver6
       When working with multiple tables with different column types, define properties named <b>columnTypes.CATS</b> and <b>columnTypes.DOGS</b> to define different column types for tables <tt>CATS</tt> and <tt>DOGS</tt>.</dd>
 
       <dt>commentChar</dt>
-      <dd>type: Character</dd>
-      <dd>default: </dd>
-      <dd>Lines before the header starting with this character are ignored.  After the header has been read, all lines are interpreted as data.</dd>
+      <dd>type: String</dd>
+      <dd>default: <tt>null</tt></dd>
+      <dd>Lines before the header that start with the comment are skipped.  After the header has been read, all lines are interpreted as data.</dd>
 
       <dt>cryptoFilterClassName</dt>
       <dd>type: Class</dd>
