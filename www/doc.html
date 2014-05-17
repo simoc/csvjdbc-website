@@ -53,24 +53,8 @@
       <tt>NULL</tt>,
       <tt>CURRENT_DATE</tt>,
       <tt>CURRENT_TIME</tt>,
-      or an expression including functions
-      <tt>DAYOFMONTH</tt>,
-      <tt>HOUROFDAY</tt>,
-      <tt>LENGTH</tt>,
-      <tt>LOWER</tt>,
-      <tt>MINUTE</tt>,
-      <tt>MONTH</tt>,
-      <tt>NULLIF</tt>,
-      <tt>ROUND</tt>,
-      <tt>SECOND</tt>,
-      <tt>TRIM</tt>,
-      <tt>UPPER</tt>,
-      <tt>YEAR</tt>,
-      aggregate functions
-      <tt>AVG</tt>, <tt>COUNT</tt>,
-      <tt>MAX</tt>, <tt>MIN</tt>,
-      <tt>SUM</tt>
-      and operations <tt>+</tt>, <tt>-</tt>,
+      or an expression including functions, aggregate functions,
+      operations <tt>+</tt>, <tt>-</tt>,
       <tt>/</tt>, <tt>*</tt>, <tt>%</tt> and parentheses.
       Supported comparisons in the optional WHERE clause are
       <tt>&lt;</tt>,
@@ -85,9 +69,104 @@
       <tt>LIKE</tt>,
       <tt>IS NULL</tt>,
       <tt>IN</tt>.
-      Use double quotes around table names or column names contaning spaces
+      Use double quotes around table names or column names containing spaces
       or other special characters.
       </p>
+
+      <table>
+      <tr>
+      <th>Function</th>
+      <th>Description</th>
+      </tr>
+      <tr>
+      <td>DAYOFMONTH(D)</td>
+      <td>Extracts day of month from date or timestamp D (first day of month is 1)</td>
+      </tr>
+      <tr>
+      <td>HOUROFDAY(T)</td>
+      <td>Extracts hour of day from time or timestamp T</td>
+      </tr>
+      <tr>
+      <td>LENGTH(S)</td>
+      <td>Returns length of string</td>
+      </tr>
+      <tr>
+      <td>LOWER(S)</td>
+      <td>Converts string to lower case</td>
+      </tr>
+      <tr>
+      <td>LTRIM(S [, T])</td>
+      <td>Removes leading characters from S that occur in T</td>
+      </tr>
+      <tr>
+      <td>MINUTE(T)</td>
+      <td>Extracts minute of hour from time or timestamp T</td>
+      </tr>
+      <tr>
+      <td>MONTH(D)</td>
+      <td>Extracts month from date or timestamp D (first month is 1)</td>
+      </tr>
+      <tr>
+      <td>NULLIF(X, Y)</td>
+      <td>Returns NULL if X and Y are equal, otherwise X</td>
+      </tr>
+      <tr>
+      <td>ROUND(N)</td>
+      <td>Rounds N to nearest whole number</td>
+      </tr>
+      <tr>
+      <td>RTRIM(S, [, T])</td>
+      <td>Removes trailing characters from S that occur in T</td>
+      </tr>
+      <tr>
+      <td>SECOND(T)</td>
+      <td>Extracts seconds value from time or timestamp T</td>
+      </tr>
+      <tr>
+      <td>TRIM(S, [, T])</td>
+      <td>Removes leading and trailing characters from S that occur in T</td>
+      </tr>
+      <tr>
+      <td>UPPER(S)</td>
+      <td>Converts string to lower case</td>
+      </tr>
+      <tr>
+      <td>YEAR(D)</td>
+      <td>Extracts year from date or timestamp D</td>
+      </tr>
+      </table>
+
+      <p>
+      </p>
+
+      <table>
+      <tr>
+      <th>Aggregate Function</th>
+      <th>Description</th>
+      </tr>
+      <tr>
+      <td>AVG(N)</td>
+      <td>Average of all values</td>
+      </tr>
+      <tr>
+      <td>COUNT(N)</td>
+      <td>Count of all values</td>
+      </tr>
+      <tr>
+      <td>MAX(N)</td>
+      <td>Maximum value</td>
+      </tr>
+      <tr>
+      <td>MIN(N)</td>
+      <td>Minimum value</td>
+      </tr>
+      <tr>
+      <td>SUM(N)</td>
+      <td>Sum of all values</td>
+      </tr>
+      <tr>
+      </table>
+
       <p>
       For queries containing <tt>ORDER BY</tt>, all records are read into memory and sorted.
       For queries containing <tt>GROUP BY</tt> plus an aggregate function, all records are read into memory and grouped.
