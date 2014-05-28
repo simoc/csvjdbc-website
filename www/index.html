@@ -90,8 +90,6 @@ public class DemoDriver
       CsvDriver.writeToCsv(results, System.out, append);
 
       // Clean up
-      results.close();
-      stmt.close();
       conn.close();
     }
     catch(Exception e)
@@ -103,7 +101,7 @@ public class DemoDriver
 
 <!-- same for every page from here -->
 <p class="lastmodified">
-Updated: 23 May 2014
+Updated: 28 May 2014
 </p>
 
 <div class="otherlogos">

@@ -219,8 +219,6 @@ public class DemoDriver2
       }
 
       // clean up
-      results.close();
-      stmt.close();
       conn.close();
     }
     catch(Exception e)
@@ -266,8 +264,6 @@ public class DemoDriver3
             results.getString(i + 1));
         }
       }
-      results.close();
-      stmt.close();
       conn.close();
     }
     catch(Exception e)
@@ -309,8 +305,6 @@ public class DemoDriver4
           System.out.println(results.getDouble(2));
           System.out.println(results.getDate(3));
       }
-      results.close();
-      stmt.close();
       conn.close();
     }
     catch(Exception e)
@@ -344,8 +338,6 @@ public class DemoDriver5
       {
           System.out.println(results.getString("COUNTRY"));
       }
-      results.close();
-      stmt.close();
       conn.close();
     }
     catch(Exception e)
@@ -404,8 +396,6 @@ public class DemoDriver6
       ResultSet results = stmt.executeQuery(sql);
       results.next();
       System.out.println(results.getString(1));
-      results.close();
-      stmt.close();
       conn.close();
     }
     catch (Exception e)
@@ -620,7 +610,7 @@ public class DemoDriver6
 
 <!-- same for every page from here -->
 <p class="lastmodified">
-Updated: 23 May 2014
+Updated: 28 May 2014
 </p>
 
 <div class="otherlogos">
