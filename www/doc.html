@@ -361,24 +361,30 @@ import java.util.*;
 
 import org.relique.io.TableReader;
 
-public class MyTableReader implements TableReader
+public class MyHTTPReader implements TableReader
 {
   public Reader getReader(Statement statement, String tableName) throws SQLException
   {
-    if (tableName.equalsIgnoreCase("ELEMENT"))
-      return new StringReader("ATOMIC_NUMBER,SYMBOL,NAME\n" +
-        "1,H,Hydrogen\n2,He,Helium\n3,Li,Lithium\n");
-    throw new SQLException("Table does not exist: " + tableName);
+    try
+    {
+      URL url = new URL("http://csvjdbc.sourceforge.net/" + tableName + ".csv");
+      HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+      InputStreamReader reader = new InputStreamReader(connection.getInputStream());
+      return reader;
+    }
+    catch (Exception e)
+    {
+      throw new SQLException(e.getMessage()); 
+    }
   }
-
-  public List getTableNames(Connection connection) throws SQLException
+  public List getTableNames(Connection connection)
   {
+    // Return list of available table names
     Vector v = new Vector();
-    v.add("ELEMENT");
+    v.add("sample");
     return v;
   }
-}
-</code></pre>
+}</code></pre>
 <pre><code>import java.sql.*;
 
 public class DemoDriver6
@@ -390,12 +396,11 @@ public class DemoDriver6
       Class.forName("org.relique.jdbc.csv.CsvDriver");
       // Give name of Java class that provides database tables.
       Connection conn = DriverManager.getConnection("jdbc:relique:csv:class:" +
-        MyTableReader.class.getName());
+    	MyHTTPReader.class.getName());
       Statement stmt = conn.createStatement();
-      String sql = "SELECT Atomic_Number from element where Symbol='Li'";
+      String sql = "SELECT * FROM sample";
       ResultSet results = stmt.executeQuery(sql);
-      results.next();
-      System.out.println(results.getString(1));
+      CsvDriver.writeToCsv(results, System.out, true);
       conn.close();
     }
     catch (Exception e)
