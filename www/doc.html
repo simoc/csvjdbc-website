@@ -141,6 +141,8 @@
       </table>
 
       <p>
+      Additional functions are defined from java methods using the 
+      <tt>function.NAME</tt> driver property.
       </p>
 
       <table>
@@ -496,6 +498,21 @@ public class DemoDriver6
       The position of the first character on each line is 1.
       Character position ranges are separated by commas.
       For example, <b>1,2-9,16-19</b>.</dd>
+
+      <dt>function.NAME</dt>
+      <dd>type: String</dd>
+      <dd>default: None</dd>
+      <dd>Defines a java method to use as the SQL function named
+      <tt>NAME</tt> in SQL statements.
+      The property value is a public static java given as a
+      java package, class and method name followed by parameter list in
+      parentheses.  For example, property <tt>function.POW</tt> with value
+      <tt>java.lang.Math.pow(double, double)</tt> makes <tt>POW</tt> available
+      as an SQL function.
+      Methods with variable length argument lists are defined by appending
+      <tt>...</tt> after the last parameter.
+      Each method parameter must be a numeric type, <tt>String</tt>,
+      or <tt>Object</tt>.</dd>
 
       <dt>headerline</dt>
       <dd>type: string</dd>
