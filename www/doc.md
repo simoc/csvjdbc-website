@@ -6,7 +6,8 @@ CsvJdbc accepts all types of CSV files defined by
 CsvJdbc accepts only SQL SELECT queries from a single table and does
 not support INSERT, UPDATE, DELETE or CREATE statements.
 
-Joins between tables in SQL SELECT queries are not supported.
+SQL sub-queries are permitted but
+joins between tables in SQL SELECT queries are not yet supported.
 
 SQL SELECT queries must be of the following format.
 
@@ -26,7 +27,8 @@ a constant value,
 or an expression including functions, aggregate functions,
 operations `+`, `-`,
 `/`, `*`, `%`, `||`,
-conditional `CASE` expressions
+conditional `CASE` expressions,
+sub-queries
 and parentheses.
 
 Supported comparisons in the optional WHERE clause are
