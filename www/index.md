@@ -23,6 +23,7 @@ The CsvJdbc driver is used just like any other JDBC driver:
 The following example puts the above steps into practice.
 
     import java.sql.*;
+    import org.relique.jdbc.csv.CsvDriver;
 
     public class DemoDriver
     {
