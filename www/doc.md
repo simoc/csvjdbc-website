@@ -24,11 +24,11 @@ a constant value,
 `NULL`,
 `CURRENT_DATE`,
 `CURRENT_TIME`,
+a sub-query,
 or an expression including functions, aggregate functions,
 operations `+`, `-`,
 `/`, `*`, `%`, `||`,
-conditional `CASE` expressions,
-sub-queries
+conditional `CASE` expressions
 and parentheses.
 
 Supported comparisons in the optional WHERE clause are
