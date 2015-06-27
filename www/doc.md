@@ -43,7 +43,8 @@ Supported comparisons in the optional WHERE clause are
 `BETWEEN`,
 `LIKE`,
 `IS NULL`,
-`IN`.
+`IN`,
+`EXISTS`.
 
 Use double quotes around table names or column names containing spaces
 or other special characters.
