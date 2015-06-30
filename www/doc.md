@@ -453,7 +453,8 @@ define different header lines for tables `CATS` and `DOGS`.
 ###ignoreNonParseableLines
 + type: Boolean
 + default: `False`
-+ when True, lines that cannot be parsed will not cause an exception but will
++ when True, lines that have too few or too many column values
+will not cause an exception but will
 be ignored. Each ignored line is logged. Call method
 `java.sql.DriverManager.setLogWriter` before executing a query to capture a
 list of ignored lines.
