@@ -473,6 +473,12 @@ file.
 width files to specify whether the header line containing the column names
 is also fixed width. If False, column names are separated by the `separator`.
 
+###missingValue
++ type: String
++ default: `null`
++ When not null, lines with too few column values will use this value for
+each missing column, instead of throwing an exception.
+
 ###quotechar
 + type: Character
 + default: `"`
